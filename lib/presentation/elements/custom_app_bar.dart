@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:k24/presentation/elements/custom_text.dart';
+
+import 'custom_text.dart';
 
 customAppBar(String text,{
   bool showIcon = false,
