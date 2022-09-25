@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:k24/config/front_end_config.dart';
 import 'package:k24/presentation/views/home/home_view.dart';
+import 'package:k24/presentation/views/product_view/product_view.dart';
+import 'package:k24/presentation/views/profile/profile_view.dart';
 
 import '../chat_list/chat_list.dart';
 
@@ -16,8 +18,8 @@ class _BottomNavBodyState extends State<BottomNavBody> {
   final List<Widget> _children = [
     const HomeView(),
     const ChatList(),
-    const Text('data'),
-    const Text('data'),
+    const ProductView(),
+    const ProfileView(),
   ];
 
   void onTabTapped(int index) {
