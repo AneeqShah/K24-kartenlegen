@@ -1,58 +1,92 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:k24/app/Custom_image_container.dart';
 import 'package:k24/navigation_helper/navigation_helper.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
 
 import '../../update_profile/update_profile.dart';
 
-class ProfileBody extends StatelessWidget {
+class ProfileBody extends StatefulWidget {
   const ProfileBody({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileBody> createState() => _ProfileBodyState();
+}
+
+class _ProfileBodyState extends State<ProfileBody> {
+  String userID = FirebaseAuth.instance.currentUser!.uid;
+  String userName = "";
+  String userImage = "";
+  String email = "";
+  String dob = "";
+  String zodiac = "";
+  String country = "";
+  bool gender = false;
+
+  @override
+  void initState() {
+    _getUserID();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(18.0),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-               const CircleAvatar(
-                radius: 35,
-                backgroundImage: AssetImage('assets/images/dp.png'),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: CircleAvatar(
-                    radius: 12,
-                    backgroundColor: Colors.amber,
-                    child: Icon(Icons.camera_alt,size: 11,color: Colors.white,),
-                  ),
-                ),
-              ),
+              CustomImageContainer(
+                  height: 45, wight: 45, radius: 500, image: userImage),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: 'User Name',
+                      text: userName,
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                     ),
-                    CustomText(
-                      text: 'Edit Profile',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 11,
+                    InkWell(
+                      onTap: () {
+                        NavigationHelper.pushRoute(
+                            context,
+                            UpdateProfile(
+                                fullName: userName,
+                                image: userImage,
+                                email: email,
+                                dob: dob,
+                                zodiac: zodiac,
+                                gender: gender, country: country,));
+                      },
+                      child: CustomText(
+                        text: 'Edit Profile',
+                        fontWeight: FontWeight.w400,
+                        fontSize: 11,
+                      ),
                     ),
                   ],
                 ),
               ),
-
             ],
           ),
           const SizedBox(
             height: 30,
           ),
           GestureDetector(
-              onTap: (){
-                NavigationHelper.pushRoute(context, UpdateProfile());
+              onTap: () {
+                NavigationHelper.pushRoute(
+                    context,
+                    UpdateProfile(
+                        fullName: userName,
+                        image: userImage,
+                        email: email,
+                        dob: dob,
+                        zodiac: zodiac,
+                        gender: gender, country: country,));
               },
               child: CustomText(text: 'Profile')),
           const SizedBox(
@@ -94,7 +128,10 @@ class ProfileBody extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          CustomText(text: 'Delete account',color: Colors.red,),
+          CustomText(
+            text: 'Delete account',
+            color: Colors.red,
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -102,7 +139,10 @@ class ProfileBody extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          CustomText(text: 'Logout',color: Colors.red,),
+          CustomText(
+            text: 'Logout',
+            color: Colors.red,
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -110,5 +150,22 @@ class ProfileBody extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  _getUserID() async {
+    FirebaseFirestore.instance
+        .collection("Users")
+        .doc(userID)
+        .snapshots()
+        .listen((DocumentSnapshot snapshot) {
+      userName = snapshot.get("name");
+      userImage = snapshot.get("image");
+      email = snapshot.get("email");
+      gender = snapshot.get("isMale");
+      zodiac = snapshot.get("zodiac");
+      country = snapshot.get("country");
+      dob = snapshot.get("dob");
+      setState(() {});
+    });
   }
 }
