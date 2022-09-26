@@ -1,32 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:k24/app/Custom_image_container.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
 
 class ProductTile extends StatelessWidget {
-String title;
-String subtitle;
+  String title;
+  String min;
+  String max;
+  String image;
+  String price;
 
-ProductTile({required this.title, required this.subtitle});
+  ProductTile(
+      {required this.title,
+      required this.min,
+      required this.max,
+      required this.price,
+      required this.image});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 3,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12)
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(18.0),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(crossAxisAlignment: CrossAxisAlignment.start,
+            CustomImageContainer(
+                height: 80, wight: 80, radius: 6, image: image),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 20,),
-              CustomText(text: title),  
-              CustomText(text: subtitle),
-                SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                    width: MediaQuery.of(context).size.width * 0.45,
+                    child: CustomText(
+                      text: title,
+                      fontWeight: FontWeight.w500,
+                    )),
+                const SizedBox(
+                  height: 10,
+                ),
+                CustomText(
+                  text: "Range: ${min} to ${max} words",
+                  fontSize: 12,
+                  color: Colors.grey.shade600,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
               ],
             ),
-            CustomText(text: '€ 0')
+            CustomText(text: '€ ${price}')
           ],
         ),
       ),
