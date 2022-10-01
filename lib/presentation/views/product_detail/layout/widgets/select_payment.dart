@@ -8,12 +8,12 @@ class SelectPayment extends StatelessWidget {
   final TextEditingController controller;
   final Function onApple;
   final Function onPaypal;
-
+  final int maxLenght;
   const SelectPayment(
       {super.key,
       required this.controller,
       required this.onApple,
-      required this.onPaypal});
+      required this.onPaypal, required this.maxLenght});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,28 @@ class SelectPayment extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            AuthTextField(hint: 'Write your question here..', controller: controller),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: const Color(0xffF0F0F0)),
+              child: TextField(
+                controller: controller,
+                maxLength: maxLenght,
+                maxLines: 3,
+                decoration: const InputDecoration(
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                  border: InputBorder.none,
+                  hintText: "Write your question here",
+                  hintStyle: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12,
+                    fontFamily: 'Poppins',
+                  ),
+                ),
+              ),
+            ),
+
             const SizedBox(
               height: 10,
             ),

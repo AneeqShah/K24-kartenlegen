@@ -15,8 +15,12 @@ class _ChatViewState extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: customAppBar('Question # 1',showIcon: true),
+
+      appBar: customAppBar('',showIcon: true),
       body: ChatViewBody(),
     );
   }
+
+
+
 }

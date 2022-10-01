@@ -112,6 +112,7 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
                   _confirmOrder();
                 },
                 onPaypal: () {},
+                maxLenght: int.parse(widget.maxRange),
               )
             ],
           ),
@@ -130,6 +131,7 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
         "min": widget.minRange,
         "max": widget.maxRange,
         "title": widget.title,
+        "askedQuestion": _question.text,
         "orderTime": DateTime.now().millisecondsSinceEpoch,
         "isAnswered": false,
         "price": widget.price,
@@ -141,9 +143,9 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
             .doc()
             .id;
         await FirebaseFirestore.instance
+            .collection("questions")
+            .doc(userID)
             .collection("chat")
-            .doc(orderID)
-            .collection("messages")
             .doc(chatID)
             .set({
           "userID": userID,
@@ -182,4 +184,6 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
     isLoading = false;
     setState(() {});
   }
+
+  _sendChat() {}
 }

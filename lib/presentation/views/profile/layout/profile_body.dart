@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:k24/app/Custom_image_container.dart';
 import 'package:k24/navigation_helper/navigation_helper.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
+import 'package:k24/presentation/views/change_password/change_password.dart';
+import 'package:k24/presentation/views/payment/payment_history.dart';
 
+import '../../auth/login/login_view.dart';
 import '../../update_profile/update_profile.dart';
 
 class ProfileBody extends StatefulWidget {
@@ -55,12 +58,14 @@ class _ProfileBodyState extends State<ProfileBody> {
                         NavigationHelper.pushRoute(
                             context,
                             UpdateProfile(
-                                fullName: userName,
-                                image: userImage,
-                                email: email,
-                                dob: dob,
-                                zodiac: zodiac,
-                                gender: gender, country: country,));
+                              fullName: userName,
+                              image: userImage,
+                              email: email,
+                              dob: dob,
+                              zodiac: zodiac,
+                              gender: gender,
+                              country: country,
+                            ));
                       },
                       child: CustomText(
                         text: 'Edit Profile',
@@ -81,12 +86,14 @@ class _ProfileBodyState extends State<ProfileBody> {
                 NavigationHelper.pushRoute(
                     context,
                     UpdateProfile(
-                        fullName: userName,
-                        image: userImage,
-                        email: email,
-                        dob: dob,
-                        zodiac: zodiac,
-                        gender: gender, country: country,));
+                      fullName: userName,
+                      image: userImage,
+                      email: email,
+                      dob: dob,
+                      zodiac: zodiac,
+                      gender: gender,
+                      country: country,
+                    ));
               },
               child: CustomText(text: 'Profile')),
           const SizedBox(
@@ -112,7 +119,11 @@ class _ProfileBodyState extends State<ProfileBody> {
           const SizedBox(
             height: 10,
           ),
-          CustomText(text: 'Payment History'),
+          InkWell(
+              onTap: () {
+                NavigationHelper.pushRoute(context, PaymentHistory());
+              },
+              child: CustomText(text: 'Payment History')),
           const SizedBox(
             height: 10,
           ),
@@ -120,7 +131,11 @@ class _ProfileBodyState extends State<ProfileBody> {
           const SizedBox(
             height: 10,
           ),
-          CustomText(text: 'Change password'),
+          InkWell(
+              onTap: () {
+                NavigationHelper.pushRoute(context, ChangePassword());
+              },
+              child: CustomText(text: 'Change password')),
           const SizedBox(
             height: 10,
           ),
@@ -139,9 +154,14 @@ class _ProfileBodyState extends State<ProfileBody> {
           const SizedBox(
             height: 10,
           ),
-          CustomText(
-            text: 'Logout',
-            color: Colors.red,
+          InkWell(
+            onTap: () {
+              _logout();
+            },
+            child: CustomText(
+              text: 'Logout',
+              color: Colors.red,
+            ),
           ),
           const SizedBox(
             height: 10,
@@ -150,6 +170,12 @@ class _ProfileBodyState extends State<ProfileBody> {
         ],
       ),
     );
+  }
+
+  _logout() async {
+    await FirebaseAuth.instance.signOut().then((value) {
+      NavigationHelper.pushReplacement(context, LoginView());
+    });
   }
 
   _getUserID() async {
