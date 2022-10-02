@@ -9,11 +9,15 @@ class SelectPayment extends StatelessWidget {
   final Function onApple;
   final Function onPaypal;
   final int maxLenght;
+  final bool isFree;
+
   const SelectPayment(
       {super.key,
       required this.controller,
       required this.onApple,
-      required this.onPaypal, required this.maxLenght});
+      required this.onPaypal,
+      required this.maxLenght,
+      required this.isFree});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +56,6 @@ class SelectPayment extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(
               height: 10,
             ),
@@ -65,25 +68,27 @@ class SelectPayment extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Row(
-              children: [
-                Expanded(
-                    child: AppButton(
-                  onPressed: () => onApple(),
-                  text: 'Apple Pay',
-                  fontSize: 11,
-                )),
-                const SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                    child: AppButton(
-                  onPressed: () => onPaypal(),
-                  text: 'PayPal',
-                  fontSize: 11,
-                )),
-              ],
-            )
+            isFree
+                ? AppButton(onPressed: () => onPaypal(), text: "Ask for free")
+                : Row(
+                    children: [
+                      Expanded(
+                          child: AppButton(
+                        onPressed: () => onApple(),
+                        text: 'Apple Pay',
+                        fontSize: 11,
+                      )),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                          child: AppButton(
+                        onPressed: () => onPaypal(),
+                        text: 'PayPal',
+                        fontSize: 11,
+                      )),
+                    ],
+                  )
           ],
         ),
       ),

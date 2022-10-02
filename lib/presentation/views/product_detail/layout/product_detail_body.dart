@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:k24/app/Custom_image_container.dart';
 import 'package:k24/app/custom_loader.dart';
+import 'package:k24/navigation_helper/navigation_helper.dart';
+import 'package:k24/presentation/elements/app_button.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
 import 'package:k24/presentation/views/product_detail/layout/widgets/select_payment.dart';
+
+import '../../confirm_order/confirm_order_screen.dart';
 
 class ProductDetailBody extends StatefulWidget {
   final String image;
@@ -15,6 +19,7 @@ class ProductDetailBody extends StatefulWidget {
   final String minRange;
   final String maxRange;
   final String productID;
+  final bool isFree;
 
   const ProductDetailBody(
       {super.key,
@@ -24,7 +29,8 @@ class ProductDetailBody extends StatefulWidget {
       required this.description,
       required this.minRange,
       required this.maxRange,
-      required this.productID});
+      required this.productID,
+      required this.isFree});
 
   @override
   State<ProductDetailBody> createState() => _ProductDetailBodyState();
@@ -109,10 +115,15 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
               SelectPayment(
                 controller: _question,
                 onApple: () {
-                  _confirmOrder();
+                  // _confirmOrder();
+                  NavigationHelper.pushRoute(context, ConfirmOrderScreen());
+
                 },
-                onPaypal: () {},
+                onPaypal: () {
+                  NavigationHelper.pushRoute(context, ConfirmOrderScreen());
+                },
                 maxLenght: int.parse(widget.maxRange),
+                isFree: widget.isFree,
               )
             ],
           ),
@@ -135,6 +146,17 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
         "orderTime": DateTime.now().millisecondsSinceEpoch,
         "isAnswered": false,
         "price": widget.price,
+      }).then((value) async {
+        FirebaseFirestore.instance
+            .collection("chatList")
+            .doc("NaupTnYfJcXauqE54QtRm0n9yPV2")
+            .collection("users")
+            .doc(userID)
+            .set({
+          "customerID": userID,
+          "isAnswered": false,
+          "time": DateTime.now().millisecondsSinceEpoch
+        }, SetOptions(merge: true));
       }).then((value) async {
         String chatID = FirebaseFirestore.instance
             .collection("chat")
@@ -184,6 +206,4 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
     isLoading = false;
     setState(() {});
   }
-
-  _sendChat() {}
 }
