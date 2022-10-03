@@ -7,8 +7,7 @@ import 'package:k24/navigation_helper/navigation_helper.dart';
 import 'package:k24/presentation/elements/app_button.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
 import 'package:k24/presentation/elements/custom_textfield.dart';
-
-import '../../../bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:k24/presentation/views/auth/login/login_view.dart';
 
 class RegisterBody extends StatefulWidget {
   const RegisterBody({Key? key}) : super(key: key);
@@ -102,6 +101,7 @@ class _RegisterBodyState extends State<RegisterBody> {
             .collection("Users")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .set({
+          'firstQuestion': true,
           'email': emailController.text,
           'name': fullName.text,
           'country': country.text,
@@ -113,7 +113,26 @@ class _RegisterBodyState extends State<RegisterBody> {
           "joiningDate": DateTime.now().millisecondsSinceEpoch
         });
       }).then((value) async {
-        NavigationHelper.pushRoute(context, BottomNavBody());
+        await FirebaseAuth.instance.currentUser!
+            .sendEmailVerification()
+            .then((value) {
+          return showDialog(
+              context: context,
+              builder: (_) => AlertDialog(
+                    title: const Text('Email Verification'),
+                    content: const Text(
+                        'Kindly verify your email to continue.After verification kindly go to login screen to for login'),
+                    actions: [
+                      TextButton(
+                        child: const Text("Login"),
+                        onPressed: () {
+                          NavigationHelper.pushReplacement(
+                              context, LoginView());
+                        },
+                      )
+                    ],
+                  ));
+        });
       });
     } on FirebaseException catch (e) {
       loadingFalse();

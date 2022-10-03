@@ -28,7 +28,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: FrontEndConfigs.kBgColor,
+      backgroundColor: FrontEndConfigs.bgColor,
       body: SplashBody(),
     );
   }

@@ -11,7 +11,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: FrontEndConfigs.bgColor,
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 18.0),
         child: GestureDetector(

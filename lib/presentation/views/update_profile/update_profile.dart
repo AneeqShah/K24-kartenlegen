@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:k24/presentation/elements/custom_app_bar.dart';
 import 'package:k24/presentation/views/update_profile/layout/update_body.dart';
+import '../../../config/front_end_config.dart';
 
 class UpdateProfile extends StatefulWidget {
   final String fullName;
@@ -29,7 +30,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar("Profile" ,showIcon: true),
-      backgroundColor: Colors.white,
+      backgroundColor: FrontEndConfigs.bgColor,
       body: UpdateProfileBody(
           fullName: widget.fullName,
           image: widget.image,

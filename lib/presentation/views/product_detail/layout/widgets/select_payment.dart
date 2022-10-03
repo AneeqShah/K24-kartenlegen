@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k24/config/front_end_config.dart';
 import 'package:k24/presentation/elements/app_button.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
 
@@ -6,22 +7,23 @@ import '../../../../elements/custom_textfield.dart';
 
 class SelectPayment extends StatelessWidget {
   final TextEditingController controller;
-  final Function onApple;
-  final Function onPaypal;
+  final Function onFree;
+  final Function onStripe;
   final int maxLenght;
   final bool isFree;
 
   const SelectPayment(
       {super.key,
       required this.controller,
-      required this.onApple,
-      required this.onPaypal,
+      required this.onFree,
+      required this.onStripe,
       required this.maxLenght,
       required this.isFree});
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: FrontEndConfigs.bgColor,
       child: Padding(
         padding: const EdgeInsets.all(18.0),
         child: Column(
@@ -69,26 +71,8 @@ class SelectPayment extends StatelessWidget {
               height: 10,
             ),
             isFree
-                ? AppButton(onPressed: () => onPaypal(), text: "Ask for free")
-                : Row(
-                    children: [
-                      Expanded(
-                          child: AppButton(
-                        onPressed: () => onApple(),
-                        text: 'Apple Pay',
-                        fontSize: 11,
-                      )),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                          child: AppButton(
-                        onPressed: () => onPaypal(),
-                        text: 'PayPal',
-                        fontSize: 11,
-                      )),
-                    ],
-                  )
+                ? AppButton(onPressed: () => onFree(), text: "Ask for free")
+                : AppButton(onPressed: () => onStripe(), text: "Continue to Pay")
           ],
         ),
       ),

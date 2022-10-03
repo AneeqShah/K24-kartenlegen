@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../app/custom_loader.dart';
+import '../../../config/front_end_config.dart';
 import '../../elements/app_button.dart';
 import '../../elements/custom_app_bar.dart';
 import '../../elements/custom_textfield.dart';
@@ -25,7 +26,7 @@ class _ChangePasswordState extends State<ChangePassword> {
       isLoading: isLoading,
       child: Scaffold(
         appBar: customAppBar("Change Password", showIcon: true),
-        backgroundColor: Colors.white,
+        backgroundColor: FrontEndConfigs.bgColor,
         body: _getUI(context),
       ),
     );

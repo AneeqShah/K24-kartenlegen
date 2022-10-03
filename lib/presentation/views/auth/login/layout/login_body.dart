@@ -105,6 +105,29 @@ class _LoginBodyState extends State<LoginBody> {
     }
   }
 
+  _checkVerification() {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user!.emailVerified) {
+      NavigationHelper.pushReplacement(context, BottomNavBody());
+    } else {
+      FirebaseAuth.instance.signOut();
+      return showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+                title: const Text('Email not-Verified'),
+                content: const Text('Kindly verify your email to continue'),
+                actions: [
+                  TextButton(
+                    child: const Text("Cancel"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  )
+                ],
+              ));
+    }
+  }
+
   loadingTrue() {
     isLoading = true;
     setState(() {});

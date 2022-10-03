@@ -17,11 +17,12 @@ class ProductBody extends StatefulWidget {
 class _ProductBodyState extends State<ProductBody> {
   String userID = FirebaseAuth.instance.currentUser!.uid;
   List<DocumentSnapshot> allProducts = [];
+  bool isFirstQuestion = false;
 
   @override
   void initState() {
     // TODO: implement initState
-    _getProducts();
+    _getUserData();
   }
 
   @override
@@ -33,57 +34,61 @@ class _ProductBodyState extends State<ProductBody> {
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
-            InkWell(
-              onTap: () {
-                String prodID =
-                    FirebaseFirestore.instance.collection("porID").doc().id;
-                NavigationHelper.pushRoute(
-                    context,
-                    ProductDetailView(
-                      image:
-                          "https://images.unsplash.com/photo-1487700160041-babef9c3cb55?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1152&q=80",
-                      title: "Free Question",
-                      price: "FREE",
-                      description:
-                          "Your first question is free. You can ask the advisor anything and the advisor will reply to you if you are satisfied with the answer, you can use our services",
-                      minRange: "100",
-                      maxRange: "500",
-                      productID: "free-${prodID}",
-                      isFree: true,
-                    ));
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Container(
-                  height: 80,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.white),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(text: "First Free Question"),
-                        Container(
-                          height: 30,
-                          width: 80,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(80),
-                              color: FrontEndConfigs.kPrimaryColor),
-                          child: Center(
-                              child: CustomText(
-                            text: "Free",
-                            color: Colors.white,
-                          )),
-                        )
-                      ],
+            isFirstQuestion
+                ? InkWell(
+                    onTap: () {
+                      String prodID = FirebaseFirestore.instance
+                          .collection("porID")
+                          .doc()
+                          .id;
+                      NavigationHelper.pushRoute(
+                          context,
+                          ProductDetailView(
+                            image:
+                                "https://images.unsplash.com/photo-1487700160041-babef9c3cb55?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1152&q=80",
+                            title: "Free Question",
+                            price: "FREE",
+                            description:
+                                "Your first question is free. You can ask the advisor anything and the advisor will reply to you if you are satisfied with the answer, you can use our services",
+                            minRange: "100",
+                            maxRange: "500",
+                            productID: "free-${prodID}",
+                            isFree: true,
+                          ));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Container(
+                        height: 80,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.white),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CustomText(text: "First Free Question"),
+                              Container(
+                                height: 30,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(80),
+                                    color: FrontEndConfigs.kPrimaryColor),
+                                child: Center(
+                                    child: CustomText(
+                                  text: "Free",
+                                  color: Colors.white,
+                                )),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
-            ),
+                  )
+                : Container(),
             Container(
               height: MediaQuery.of(context).size.height * 0.5,
               width: MediaQuery.of(context).size.width,
@@ -135,5 +140,17 @@ class _ProductBodyState extends State<ProductBody> {
       });
       setState(() {});
     });
+  }
+
+  _getUserData() {
+    FirebaseFirestore.instance
+        .collection("Users")
+        .doc(userID)
+        .snapshots()
+        .listen((DocumentSnapshot snapshot) {
+      isFirstQuestion = snapshot.get("firstQuestion");
+      setState(() {});
+    });
+    _getProducts();
   }
 }

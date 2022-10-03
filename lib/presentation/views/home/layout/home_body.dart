@@ -47,14 +47,7 @@ class HomeBody extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            AppButton(
-              onPressed: () {},
-              text: 'Advertisement',
-              color: Colors.white,
-              textColor: Colors.black,
-              borderColor: Colors.black,
-              height: 55,
-            )
+
           ],
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:k24/presentation/views/payment/widget/payment_card.dart';
+import '../../../config/front_end_config.dart';
 
 import '../../../app/custom_loader.dart';
 import '../../elements/custom_app_bar.dart';
@@ -31,7 +32,7 @@ class _PaymentHistoryState extends State<PaymentHistory> {
       isLoading: isLoading,
       child: Scaffold(
         appBar: customAppBar("History", showIcon: true),
-        backgroundColor: Colors.white,
+        backgroundColor: FrontEndConfigs.bgColor,
         body: _getUI(context),
       ),
     );

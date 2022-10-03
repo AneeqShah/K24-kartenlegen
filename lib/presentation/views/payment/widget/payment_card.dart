@@ -53,7 +53,7 @@ class PaymentCard extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                     ),
                     CustomText(
-                      text: "E ${price}",
+                      text: "€ ${price}",
                       color: Colors.black,
                       fontSize: 14,
                       fontWeight: FontWeight.w500,

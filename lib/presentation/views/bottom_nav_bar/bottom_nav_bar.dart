@@ -31,14 +31,17 @@ class _BottomNavBodyState extends State<BottomNavBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: FrontEndConfigs.bgColor,
+
       body: _children[_currentIndex], // new
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: true,
+        elevation: 0,
         showUnselectedLabels: true,
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.white,
+        backgroundColor: FrontEndConfigs.bgColor,
         selectedLabelStyle:
             const TextStyle(fontWeight: FontWeight.normal, fontSize: 10),
         unselectedLabelStyle:

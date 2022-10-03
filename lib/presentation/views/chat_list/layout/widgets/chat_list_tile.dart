@@ -15,7 +15,7 @@ class ChatListTile extends StatelessWidget {
         ListTile(
           leading: const CircleAvatar(
             radius: 28,
-            backgroundImage: AssetImage('assets/images/user.png'),
+            backgroundImage: AssetImage('assets/images/logo.png'),
           ),
           isThreeLine: false,
           minLeadingWidth: 20,

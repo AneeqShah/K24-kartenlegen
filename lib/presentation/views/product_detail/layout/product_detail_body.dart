@@ -114,13 +114,11 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
               ),
               SelectPayment(
                 controller: _question,
-                onApple: () {
-                  // _confirmOrder();
-                  NavigationHelper.pushRoute(context, ConfirmOrderScreen());
-
+                onFree: () {
+                  _confirmOrder();
                 },
-                onPaypal: () {
-                  NavigationHelper.pushRoute(context, ConfirmOrderScreen());
+                onStripe: () {
+                  _confirmOrder();
                 },
                 maxLenght: int.parse(widget.maxRange),
                 isFree: widget.isFree,
@@ -186,8 +184,13 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
             "customerID": userID,
             "graphID": graphID
           }).then((value) {
-            loadingFalse();
-            print("Finished");
+            FirebaseFirestore.instance.collection("Users").doc(userID).set({
+              "firstQuestion": false,
+            }, SetOptions(merge: true)).then((value) {
+              loadingFalse();
+              NavigationHelper.pushReplacement(
+                  context, const ConfirmOrderScreen());
+            });
           });
         });
       });
