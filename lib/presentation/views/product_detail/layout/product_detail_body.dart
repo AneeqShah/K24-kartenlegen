@@ -172,6 +172,8 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
           "question": _question.text,
           "orderID": orderID,
           "chatID": chatID,
+          "isImage": false,
+
           "time": DateTime.now().millisecondsSinceEpoch,
         }).then((value) async {
           String graphID =

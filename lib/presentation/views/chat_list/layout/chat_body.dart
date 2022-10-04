@@ -32,8 +32,8 @@ class _ChatListBodyState extends State<ChatListBody> {
           child: ListView.builder(
               itemCount: chat.length,
               itemBuilder: (context, i) {
-                DateTime time = DateTime.fromMillisecondsSinceEpoch(
-                    chat[i]["time"]);
+                DateTime time =
+                    DateTime.fromMillisecondsSinceEpoch(chat[i]["time"]);
                 var uploadTime = Jiffy(time).MMMEd;
 
                 return Padding(
@@ -45,7 +45,8 @@ class _ChatListBodyState extends State<ChatListBody> {
                     child: ChatListTile(
                         title: 'Adviser',
                         date: uploadTime,
-                        desc: chat[i]["question"]),
+                        desc:
+                            chat[i]["isImage"] ? "Image" : chat[i]["question"]),
                   ),
                 );
               })),
@@ -61,6 +62,7 @@ class _ChatListBodyState extends State<ChatListBody> {
         .limit(1)
         .snapshots()
         .listen((QuerySnapshot snapshot) {
+      chat.clear();
       snapshot.docs.forEach((element) {
         chat.add(element);
         setState(() {});

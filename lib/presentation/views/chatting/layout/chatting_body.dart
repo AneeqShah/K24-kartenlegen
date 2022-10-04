@@ -70,11 +70,13 @@ class _ChatViewBodyState extends State<ChatViewBody> {
                 return MessageRowWidget(
                   current: true,
                   message: chat[index]["question"],
+                  isImage: chat[index]['isImage'],
                 );
               }
               return MessageRowWidget(
                 current: false,
                 message: chat[index]["question"],
+                isImage: chat[index]['isImage'],
               );
             },
           ),
