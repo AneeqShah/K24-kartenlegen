@@ -143,7 +143,7 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
         "askedQuestion": _question.text,
         "orderTime": DateTime.now().millisecondsSinceEpoch,
         "isAnswered": false,
-        "price": widget.price,
+        "price": widget.isFree ? "0" : widget.price,
       }).then((value) async {
         FirebaseFirestore.instance
             .collection("chatList")
@@ -173,7 +173,6 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
           "orderID": orderID,
           "chatID": chatID,
           "isImage": false,
-
           "time": DateTime.now().millisecondsSinceEpoch,
         }).then((value) async {
           String graphID =
