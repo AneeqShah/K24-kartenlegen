@@ -59,7 +59,7 @@ class _BottomNavBodyState extends State<BottomNavBody> {
               label: 'Home'),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.chat,
+                Icons.favorite_border,
                 color: _currentIndex == 1
                     ? FrontEndConfigs.kPrimaryColor
                     : Colors.grey,
