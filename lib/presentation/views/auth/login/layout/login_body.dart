@@ -110,6 +110,7 @@ class _LoginBodyState extends State<LoginBody> {
     if (user!.emailVerified) {
       NavigationHelper.pushReplacement(context, BottomNavBody());
     } else {
+      loadingFalse();
       FirebaseAuth.instance.signOut();
       return showDialog(
           context: context,

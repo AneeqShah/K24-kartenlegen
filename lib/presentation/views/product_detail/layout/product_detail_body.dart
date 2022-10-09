@@ -1,14 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:k24/app/Custom_image_container.dart';
 import 'package:k24/app/custom_loader.dart';
 import 'package:k24/navigation_helper/navigation_helper.dart';
-import 'package:k24/presentation/elements/app_button.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
 import 'package:k24/presentation/views/product_detail/layout/widgets/select_payment.dart';
-
 import '../../confirm_order/confirm_order_screen.dart';
 
 class ProductDetailBody extends StatefulWidget {
@@ -114,14 +113,20 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
               ),
               SelectPayment(
                 controller: _question,
-                onFree: () {
-                  _confirmOrder();
+                onFree: () async {
+                  // _confirmOrder();
+                  // final paymentMethod =
+                  //     await Stripe.instance.createPaymentMethod(PaymentMethodParams.card());
                 },
                 onStripe: () {
-                  _confirmOrder();
                 },
                 maxLenght: int.parse(widget.maxRange),
                 isFree: widget.isFree,
+              ),
+              CardField(
+                onCardChanged: (card) {
+                  print(card);
+                },
               )
             ],
           ),
