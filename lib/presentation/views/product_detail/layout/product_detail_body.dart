@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,7 @@ import 'package:k24/navigation_helper/navigation_helper.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
 import 'package:k24/presentation/views/product_detail/layout/widgets/select_payment.dart';
 import '../../confirm_order/confirm_order_screen.dart';
+import 'package:http/http.dart' as http;
 
 class ProductDetailBody extends StatefulWidget {
   final String image;
@@ -119,6 +122,9 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
                   //     await Stripe.instance.createPaymentMethod(PaymentMethodParams.card());
                 },
                 onStripe: () {
+                  makePayment('1212').then((value) {
+
+                  });
                 },
                 maxLenght: int.parse(widget.maxRange),
                 isFree: widget.isFree,
@@ -203,6 +209,102 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
     } on FirebaseException catch (e) {
       loadingFalse();
       Fluttertoast.showToast(msg: e.message!);
+    }
+  }
+
+  Map<String, dynamic>? paymentIntentData;
+
+  Future<bool> makePayment(String payment) async {
+    try {
+      paymentIntentData = await createPaymentIntent(
+          payment, 'EUR'); //json.decode(response.body);
+      print('Response body==>}');
+      return await Stripe.instance
+          .initPaymentSheet(
+              paymentSheetParameters: SetupPaymentSheetParameters(
+                  paymentIntentClientSecret:
+                      paymentIntentData!['client_secret'],
+                  applePay: true,
+                  googlePay: true,
+                  testEnv: true,
+                  style: ThemeMode.dark,
+                  merchantCountryCode: 'EUR',
+                  merchantDisplayName: 'ANNIE'))
+          .then((value) {
+        print("about displayyyyyyyy");
+        return displayPaymentSheet(
+          context,
+        );
+      });
+
+      ///now finally display payment sheeet
+
+    } catch (e, s) {
+      print(e.toString());
+
+      return Future.value(false);
+      print('exception:$e$s');
+    }
+  }
+
+  Future<bool> displayPaymentSheet(
+    BuildContext context,
+  ) async {
+    try {
+      print("paymentttt sheettt");
+      return await Stripe.instance
+          .presentPaymentSheet(
+              parameters: PresentPaymentSheetParameters(
+        clientSecret: paymentIntentData!['client_secret'],
+        confirmPayment: true,
+      ))
+          .then((newValue) {
+        //orderPlaceApi(paymentIntentData!['id'].toString());
+
+        paymentIntentData = null;
+        return Future.value(true);
+      }).onError((error, stackTrace) {
+        loadingFalse();
+        print('Exception/DISPLAYPAYMENTSHEET==> $error $stackTrace');
+        return Future.value(false);
+      });
+    } on StripeException catch (e) {
+      loadingFalse();
+      print('Exception/DISPLAYPAYMENTSHEET==> $e');
+      showDialog(
+          context: context,
+          builder: (_) => const AlertDialog(
+                content: Text("Cancelled "),
+              ));
+      return Future.value(false);
+    } catch (e) {
+      loadingFalse();
+      print('HI $e');
+      return Future.value(false);
+    }
+  }
+
+  //  Future<Map<String, dynamic>>
+  createPaymentIntent(String amount, String currency) async {
+    try {
+      Map<String, dynamic> body = {
+        'amount': '122',
+        'currency': currency,
+        'payment_method_types[]': 'card'
+      };
+      print(body);
+      var response = await http.post(
+          Uri.parse('https://api.stripe.com/v1/payment_intents'),
+          body: body,
+          headers: {
+            'Authorization':
+                'Bearer sk_test_51Ln3A4HdUEl3CEFmy89WdHGUM2eQCxFvxIgJgyOEZsg6m8T93bz5k5NepIvBVCl9di8iQxYRxZuNCysvv0mATSEw00Fs7M28Pv',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          });
+      print('Create Intent reponse ===> ${response.body.toString()}');
+      return jsonDecode(response.body);
+    } catch (err) {
+      print('err charging user: ${err.toString()}');
     }
   }
 
