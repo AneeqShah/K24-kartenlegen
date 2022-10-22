@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:k24/app/Custom_image_container.dart';
 import 'package:k24/navigation_helper/navigation_helper.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
 import 'package:k24/presentation/views/change_password/change_password.dart';
 import 'package:k24/presentation/views/payment/payment_history.dart';
+import 'package:k24/presentation/views/splash/splash_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../auth/login/login_view.dart';
@@ -101,7 +103,6 @@ class _ProfileBodyState extends State<ProfileBody> {
             height: 10,
           ),
           const Divider(),
-
           const SizedBox(
             height: 10,
           ),
@@ -175,9 +176,45 @@ class _ProfileBodyState extends State<ProfileBody> {
           const SizedBox(
             height: 10,
           ),
-          CustomText(
-            text: 'Delete account',
-            color: Colors.red,
+          InkWell(
+            onTap: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) => CupertinoAlertDialog(
+                        title: Text("Delete Account"),
+                        content: CustomText(
+                          text:
+                              "Are you sure you want to delete your account? You will lose all your data permanently.",
+                          // color: Colors.grey.shade600,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        actions: <Widget>[
+                          CupertinoDialogAction(
+                            isDefaultAction: true,
+                            child: CustomText(
+                              text: "Delete",
+                              color: Colors.red,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                            ),
+                            onPressed: () {
+                              _deleteAccount();
+                            },
+                          ),
+                          CupertinoDialogAction(
+                            child: Text("No"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          )
+                        ],
+                      ));
+            },
+            child: CustomText(
+              text: 'Delete account',
+              color: Colors.red,
+            ),
           ),
           const SizedBox(
             height: 10,
@@ -230,6 +267,21 @@ class _ProfileBodyState extends State<ProfileBody> {
   Future<void> _launchUrl(String url) async {
     if (!await launchUrl(Uri.parse(url))) {
       throw 'Could not launch $url';
+    }
+  }
+
+  _deleteAccount() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      FirebaseFirestore.instance
+          .collection("Users")
+          .doc(user.uid)
+          .delete()
+          .then((value) async {
+        await user.delete().then((value) {
+          NavigationHelper.pushReplacement(context, SplashView());
+        });
+      });
     }
   }
 }
