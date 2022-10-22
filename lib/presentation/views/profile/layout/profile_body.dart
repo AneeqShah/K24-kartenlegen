@@ -144,6 +144,26 @@ class _ProfileBodyState extends State<ProfileBody> {
             height: 10,
           ),
           CustomText(
+            text: 'Rate app',
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 10,
+          ),
+          CustomText(
+            text: 'FAQ',
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 10,
+          ),
+          CustomText(
             text: 'Delete account',
             color: Colors.red,
           ),

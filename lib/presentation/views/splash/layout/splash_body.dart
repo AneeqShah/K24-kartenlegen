@@ -8,10 +8,9 @@ class SplashBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-      child: Image.asset('assets/images/logo.png'),
-      ),
+          height: 200,
+          width: 200,
+          child: Image.asset('assets/images/tranparentLogo.png',)),
     );
   }
 }

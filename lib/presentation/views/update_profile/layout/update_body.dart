@@ -168,8 +168,8 @@ class _UpdateProfileBodyState extends State<UpdateProfileBody> {
                             final DateTime? picked = await showDatePicker(
                                 context: context,
                                 initialDate: selectedDate,
-                                firstDate: DateTime(2015, 8),
-                                lastDate: DateTime(2101));
+                                firstDate: DateTime(1800, 8),
+                                lastDate: DateTime.now());
                             if (picked != null && picked != selectedDate) {
                               setState(() {
                                 selectedDate = picked;

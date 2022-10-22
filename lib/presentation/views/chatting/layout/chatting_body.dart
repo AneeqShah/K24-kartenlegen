@@ -81,7 +81,6 @@ class _ChatViewBodyState extends State<ChatViewBody> {
             },
           ),
         ),
-        ButtomButton(),
       ],
     );
   }

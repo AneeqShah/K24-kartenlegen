@@ -117,23 +117,17 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
               SelectPayment(
                 controller: _question,
                 onFree: () async {
-                  // _confirmOrder();
-                  // final paymentMethod =
-                  //     await Stripe.instance.createPaymentMethod(PaymentMethodParams.card());
+                  _confirmOrder();
                 },
-                onStripe: () {
-                  makePayment('1212').then((value) {
-
+                onStripe: () async {
+                  print("called");
+                 await makePayment(widget.price).then((value) async {
+                    await _confirmOrder();
                   });
                 },
                 maxLenght: int.parse(widget.maxRange),
                 isFree: widget.isFree,
               ),
-              CardField(
-                onCardChanged: (card) {
-                  print(card);
-                },
-              )
             ],
           ),
         ),
@@ -217,8 +211,7 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
   Future<bool> makePayment(String payment) async {
     try {
       paymentIntentData = await createPaymentIntent(
-          payment, 'EUR'); //json.decode(response.body);
-      print('Response body==>}');
+          "${payment}", 'EUR'); //json.decode(response.body);
       return await Stripe.instance
           .initPaymentSheet(
               paymentSheetParameters: SetupPaymentSheetParameters(
@@ -229,9 +222,8 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
                   testEnv: true,
                   style: ThemeMode.dark,
                   merchantCountryCode: 'EUR',
-                  merchantDisplayName: 'ANNIE'))
+                  merchantDisplayName: 'K24'))
           .then((value) {
-        print("about displayyyyyyyy");
         return displayPaymentSheet(
           context,
         );
@@ -288,7 +280,7 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
   createPaymentIntent(String amount, String currency) async {
     try {
       Map<String, dynamic> body = {
-        'amount': '122',
+        'amount': amount,
         'currency': currency,
         'payment_method_types[]': 'card'
       };
