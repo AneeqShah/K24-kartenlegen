@@ -6,6 +6,7 @@ import 'package:k24/navigation_helper/navigation_helper.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
 import 'package:k24/presentation/views/change_password/change_password.dart';
 import 'package:k24/presentation/views/payment/payment_history.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../auth/login/login_view.dart';
 import '../../update_profile/update_profile.dart';
@@ -100,22 +101,7 @@ class _ProfileBodyState extends State<ProfileBody> {
             height: 10,
           ),
           const Divider(),
-          const SizedBox(
-            height: 10,
-          ),
-          CustomText(text: 'Term & Conditions'),
-          const SizedBox(
-            height: 10,
-          ),
-          const Divider(),
-          const SizedBox(
-            height: 10,
-          ),
-          CustomText(text: 'Privacy Policy'),
-          const SizedBox(
-            height: 10,
-          ),
-          const Divider(),
+
           const SizedBox(
             height: 10,
           ),
@@ -156,6 +142,32 @@ class _ProfileBodyState extends State<ProfileBody> {
           CustomText(
             text: 'FAQ',
           ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 10,
+          ),
+          InkWell(
+              onTap: () {
+                _launchUrl(
+                    "https://docs.google.com/document/d/1D5csZ9p6k6cMMRjTtnT2uEqFf9Wxxvegx9POBLuxAwY/edit?usp=sharing");
+              },
+              child: CustomText(text: 'Term & Conditions')),
+          const SizedBox(
+            height: 10,
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 10,
+          ),
+          InkWell(
+              onTap: () {
+                _launchUrl(
+                    "https://docs.google.com/document/d/19FmL1Tj4UAa3bLwi9Woq-azlg0Pa48PkfpbrG4HLNVc/edit?usp=sharing");
+              },
+              child: CustomText(text: 'Privacy Policy')),
           const SizedBox(
             height: 10,
           ),
@@ -213,5 +225,11 @@ class _ProfileBodyState extends State<ProfileBody> {
       dob = snapshot.get("dob");
       setState(() {});
     });
+  }
+
+  Future<void> _launchUrl(String url) async {
+    if (!await launchUrl(Uri.parse(url))) {
+      throw 'Could not launch $url';
+    }
   }
 }

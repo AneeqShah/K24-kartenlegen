@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -121,8 +121,12 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
                 },
                 onStripe: () async {
                   print("called");
-                 await makePayment(widget.price).then((value) async {
-                    await _confirmOrder();
+                  await makePayment(widget.price).then((value) async {
+                    if (value == true) {
+                      await _confirmOrder();
+                    } else {
+                      // Fluttertoast.showToast(msg: "Failed Try again");
+                    }
                   });
                 },
                 maxLenght: int.parse(widget.maxRange),
@@ -211,7 +215,7 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
   Future<bool> makePayment(String payment) async {
     try {
       paymentIntentData = await createPaymentIntent(
-          "${payment}", 'EUR'); //json.decode(response.body);
+          "${int.parse(payment) * 100}", 'EUR'); //json.decode(response.body);
       return await Stripe.instance
           .initPaymentSheet(
               paymentSheetParameters: SetupPaymentSheetParameters(
@@ -221,6 +225,7 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
                   googlePay: true,
                   testEnv: true,
                   style: ThemeMode.dark,
+                  currencyCode: 'EUR',
                   merchantCountryCode: 'EUR',
                   merchantDisplayName: 'K24'))
           .then((value) {
@@ -233,9 +238,8 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
 
     } catch (e, s) {
       print(e.toString());
-
+      Fluttertoast.showToast(msg: e.toString());
       return Future.value(false);
-      print('exception:$e$s');
     }
   }
 
@@ -243,7 +247,6 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
     BuildContext context,
   ) async {
     try {
-      print("paymentttt sheettt");
       return await Stripe.instance
           .presentPaymentSheet(
               parameters: PresentPaymentSheetParameters(
@@ -284,7 +287,6 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
         'currency': currency,
         'payment_method_types[]': 'card'
       };
-      print(body);
       var response = await http.post(
           Uri.parse('https://api.stripe.com/v1/payment_intents'),
           body: body,
