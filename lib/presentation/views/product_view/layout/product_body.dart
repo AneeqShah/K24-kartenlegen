@@ -49,7 +49,8 @@ class _ProductBodyState extends State<ProductBody> {
                             title: "Free Question",
                             price: "FREE",
                             description:
-                                "Your first question is free. You can ask the advisor anything and the advisor will reply to you if you are satisfied with the answer, you can use our services",
+                                "Your first question is free. You can ask the advisor anything and the advisor will reply to you if you are satisfied with the answer, "
+                                    "you can use our services",
                             minRange: "100",
                             maxRange: "500",
                             productID: "free-${prodID}",

@@ -6,6 +6,8 @@ import 'package:k24/app/Custom_image_container.dart';
 import 'package:k24/navigation_helper/navigation_helper.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
 import 'package:k24/presentation/views/change_password/change_password.dart';
+import 'package:k24/presentation/views/emergency/Emergency_contact.dart';
+import 'package:k24/presentation/views/faq/FAQScreen.dart';
 import 'package:k24/presentation/views/payment/payment_history.dart';
 import 'package:k24/presentation/views/splash/splash_view.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -140,8 +142,28 @@ class _ProfileBodyState extends State<ProfileBody> {
           const SizedBox(
             height: 10,
           ),
-          CustomText(
-            text: 'FAQ',
+          InkWell(
+            onTap: () {
+              NavigationHelper.pushRoute(context, FaqScreen());
+            },
+            child: CustomText(
+              text: 'FAQ',
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            onTap: () {
+              NavigationHelper.pushRoute(context, EmergencyContact());
+            },
+            child: CustomText(
+              text: 'Emergency Contact\'s',
+            ),
           ),
           const SizedBox(
             height: 10,
