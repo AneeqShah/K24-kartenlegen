@@ -39,7 +39,10 @@ class _ChangePasswordState extends State<ChangePassword> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset('assets/images/logo1.png'),
+            Container(
+                height: 200,
+                width: 200,
+                child: Image.asset('assets/images/tranparentLogo.png')),
             AuthTextField(hint: 'New password', controller: newController),
             const SizedBox(
               height: 15,
