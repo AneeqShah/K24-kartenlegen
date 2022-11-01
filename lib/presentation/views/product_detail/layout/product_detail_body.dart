@@ -78,20 +78,20 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
               const SizedBox(
                 height: 10,
               ),
-              CustomText(
-                text: 'Range',
-                fontSize: 13,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey.shade600,
-              ),
-              CustomText(
-                text: '${widget.minRange} to ${widget.maxRange} words',
-                fontWeight: FontWeight.w400,
-                fontSize: 13,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
+              // CustomText(
+              //   text: 'Range',
+              //   fontSize: 13,
+              //   fontWeight: FontWeight.bold,
+              //   color: Colors.grey.shade600,
+              // ),
+              // CustomText(
+              //   text: '${widget.minRange} to ${widget.maxRange} words',
+              //   fontWeight: FontWeight.w400,
+              //   fontSize: 13,
+              // ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
               const Divider(),
               const SizedBox(
                 height: 10,
