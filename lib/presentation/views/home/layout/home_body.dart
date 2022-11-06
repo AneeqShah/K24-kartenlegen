@@ -29,7 +29,7 @@ class HomeBody extends StatelessWidget {
               text: 'Our Services',
               fontWeight: FontWeight.w600,
               fontSize: 17,
-              color: FrontEndConfigs.kPrimaryColor,
+              color: Colors.purple.shade900,
             ),
             SizedBox(
               height: 10,
@@ -38,9 +38,11 @@ class HomeBody extends StatelessWidget {
               align: TextAlign.center,
               text:
                   "Kartenlegen24 bietet dir eine professionelle spirituelle Beratung rund um die Uhr.\nDeine Zukunft ist bei uns kein Geheimnis,ob es um Liebe oder Beruf geht, wir geben dir klare Antworten. Präzise und treffsichere Aussagen, analysiert mit verschiedenen Kartendecks, wie Tarot-, Lenormand-, Zigeuner-, Engel-, Sibilla-, Ägyptische-, und Kipper-Karten. Wähle zwischen unseren Fragepaketen oder lass dir von unseren Experten, eine genaue und persönliche astrologische oder numerologische Berechnung erstellen.",
-              fontWeight: FontWeight.w300,
-              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              fontSize: 12,
+              color: Colors.purple.shade900,
               height: 1.8,
+
             ),
             SizedBox(
               height: 20,

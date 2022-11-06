@@ -120,12 +120,14 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
                   _confirmOrder();
                 },
                 onStripe: () async {
-                  print("called");
-                  await makePayment(widget.price).then((value) async {
+                  String str = widget.price;
+                  var arr = str.split('.');
+                  String price = "${arr[0]}${arr[1]}";
+                  await makePayment(price).then((value) async {
                     if (value == true) {
                       await _confirmOrder();
                     } else {
-                      // Fluttertoast.showToast(msg: "Failed Try again");
+                      Fluttertoast.showToast(msg: "Failed Try again");
                     }
                   });
                 },
@@ -213,9 +215,11 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
   Map<String, dynamic>? paymentIntentData;
 
   Future<bool> makePayment(String payment) async {
+    // double price = double.parse(payment) * 100 / 100;
+    // print("Price is $price");
     try {
       paymentIntentData = await createPaymentIntent(
-          "${int.parse(payment) * 100}", 'EUR'); //json.decode(response.body);
+          "$payment", 'EUR'); //json.decode(response.body);
       return await Stripe.instance
           .initPaymentSheet(
               paymentSheetParameters: SetupPaymentSheetParameters(

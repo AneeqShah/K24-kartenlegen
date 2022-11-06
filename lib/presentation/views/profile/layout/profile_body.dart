@@ -47,7 +47,7 @@ class _ProfileBodyState extends State<ProfileBody> {
           Row(
             children: [
               CustomImageContainer(
-                  height: 45, wight: 45, radius: 500, image: userImage),
+                  height: 50 , wight: 50, radius: 14, image: userImage),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(

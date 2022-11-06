@@ -112,9 +112,9 @@ class _UpdateProfileBodyState extends State<UpdateProfileBody> {
                           : Column(
                               children: [
                                 CustomImageContainer(
-                                  height: 110,
-                                  wight: 110,
-                                  radius: 500,
+                                  height: 130,
+                                  wight: 130,
+                                  radius: 0,
                                   image: image,
                                 ),
                               ],

@@ -24,12 +24,17 @@ class _CustomImageContainerState extends State<CustomImageContainer> {
     return Container(
         height: widget.height,
         width: widget.wight,
+        decoration: BoxDecoration(
+            color: Colors.white,
+
+            borderRadius: BorderRadius.circular(12)
+        ),
         child: ClipRRect(
             borderRadius: BorderRadius.circular(widget.radius),
             child: widget.image == ""
                 ? Icon(Icons.person_outline_rounded)
                 : CachedNetworkImage(
-                    fit: BoxFit.fill,
+                    fit: BoxFit.contain,
                     imageUrl: widget.image,
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) => Container(

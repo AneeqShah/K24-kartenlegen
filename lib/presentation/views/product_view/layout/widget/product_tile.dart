@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:k24/app/Custom_image_container.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
@@ -25,32 +26,41 @@ class ProductTile extends StatelessWidget {
         padding: const EdgeInsets.all(18.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CustomImageContainer(
-                height: 80, wight: 80, radius: 6, image: image),
+            Container(
+                height: 80,
+                width: 80,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12)),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(6),
+                    child: image == ""
+                        ? Icon(Icons.person_outline_rounded)
+                        : CachedNetworkImage(
+                            fit: BoxFit.fill,
+                            imageUrl: image,
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) => Container(
+                                    width: 50,
+                                    height: 50,
+                                    child: Center(
+                                      child: CircularProgressIndicator(
+                                        value: downloadProgress.progress,
+                                      ),
+                                    )),
+                          ))),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(
-                  height: 20,
-                ),
                 Container(
-                    width: MediaQuery.of(context).size.width * 0.45,
+                    width: MediaQuery.of(context).size.width * 0.4,
                     child: CustomText(
                       text: title,
                       fontWeight: FontWeight.w500,
                     )),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomText(
-                  text: "Range: ${min} to ${max} words",
-                  fontSize: 12,
-                  color: Colors.grey.shade600,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
               ],
             ),
             CustomText(text: '€ ${price}')
