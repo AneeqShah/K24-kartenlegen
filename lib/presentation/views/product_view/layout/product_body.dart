@@ -45,12 +45,11 @@ class _ProductBodyState extends State<ProductBody> {
                           context,
                           ProductDetailView(
                             image:
-                                "https://images.unsplash.com/photo-1487700160041-babef9c3cb55?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1152&q=80",
-                            title: "Free Question",
+                                "https://i.ibb.co/Pt7v7XC/tarot-gf8486537e-1920.jpg",
+                            title: "Erste Frage Gratis",
                             price: "FREE",
                             description:
-                                "Your first question is free. You can ask the advisor anything and the advisor will reply to you if you are satisfied with the answer, "
-                                    "you can use our services",
+                                "Erste Gratis Frage einlösen",
                             minRange: "100",
                             maxRange: "500",
                             productID: "free-${prodID}",

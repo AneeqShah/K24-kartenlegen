@@ -26,65 +26,71 @@ class _LoginBodyState extends State<LoginBody> {
   Widget build(BuildContext context) {
     return CustomLoader(
       isLoading: isLoading,
-      child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 50,
-            ),
-            Center(child: Image.asset('assets/images/logo1.png')),
-            const SizedBox(
-              height: 30,
-            ),
-            CustomText(
-              text: 'Sign in',
-              fontSize: 22,
-              fontWeight: FontWeight.w600,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            CustomText(
-              text: 'Welcome to Kartenlegen24\nLogin to continue',
-              fontSize: 11,
-              fontWeight: FontWeight.w300,
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            CustomText(text: 'Email'),
-            AuthTextField(hint: 'user@gmail.com', controller: emailController),
-            const SizedBox(
-              height: 15,
-            ),
-            CustomText(text: 'Password'),
-            AuthTextField(hint: '**********', controller: passwordController),
-            const SizedBox(
-              height: 10,
-            ),
-            Align(
-                alignment: Alignment.bottomRight,
-                child: CustomText(
-                  text: 'Forgot Password?',
-                  fontWeight: FontWeight.w500,
-                )),
-            const SizedBox(
-              height: 30,
-            ),
-            AppButton(
-                onPressed: () {
-                  if (emailController.text.trim() == "") {
-                    Fluttertoast.showToast(msg: "Email can't be empty");
-                  } else if (passwordController.text.trim() == "") {
-                    Fluttertoast.showToast(msg: "Password can't be empty");
-                  } else {
-                    userLogin();
-                  }
-                },
-                text: 'Login'),
-          ],
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 50,
+              ),
+              Center(
+                  child: SizedBox(
+                      height: 200,
+                      width: 250,
+                      child: Image.asset('assets/images/tranparentLogo.png'))),
+              const SizedBox(
+                height: 30,
+              ),
+              CustomText(
+                text: 'Sign in',
+                fontSize: 22,
+                fontWeight: FontWeight.w600,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomText(
+                text: 'Welcome to Kartenlegen24\nLogin to continue',
+                fontSize: 11,
+                fontWeight: FontWeight.w300,
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              CustomText(text: 'Email'),
+              AuthTextField(hint: 'user@gmail.com', controller: emailController),
+              const SizedBox(
+                height: 15,
+              ),
+              CustomText(text: 'Password'),
+              AuthTextField(hint: '**********', controller: passwordController),
+              const SizedBox(
+                height: 10,
+              ),
+              Align(
+                  alignment: Alignment.bottomRight,
+                  child: CustomText(
+                    text: 'Forgot Password?',
+                    fontWeight: FontWeight.w500,
+                  )),
+              const SizedBox(
+                height: 30,
+              ),
+              AppButton(
+                  onPressed: () {
+                    if (emailController.text.trim() == "") {
+                      Fluttertoast.showToast(msg: "Email can't be empty");
+                    } else if (passwordController.text.trim() == "") {
+                      Fluttertoast.showToast(msg: "Password can't be empty");
+                    } else {
+                      userLogin();
+                    }
+                  },
+                  text: 'Login'),
+            ],
+          ),
         ),
       ),
     );

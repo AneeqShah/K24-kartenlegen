@@ -114,7 +114,7 @@ class _UpdateProfileBodyState extends State<UpdateProfileBody> {
                                 CustomImageContainer(
                                   height: 130,
                                   wight: 130,
-                                  radius: 0,
+                                  radius: 500,
                                   image: image,
                                 ),
                               ],
