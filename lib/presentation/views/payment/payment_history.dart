@@ -31,7 +31,7 @@ class _PaymentHistoryState extends State<PaymentHistory> {
     return CustomLoader(
       isLoading: isLoading,
       child: Scaffold(
-        appBar: customAppBar("History", showIcon: true),
+        appBar: customAppBar("Geschichte", showIcon: true),
         backgroundColor: FrontEndConfigs.bgColor,
         body: _getUI(context),
       ),

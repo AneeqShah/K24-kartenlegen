@@ -25,7 +25,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     return CustomLoader(
       isLoading: isLoading,
       child: Scaffold(
-        appBar: customAppBar("Change Password", showIcon: true),
+        appBar: customAppBar("Passwort ändern", showIcon: true),
         backgroundColor: FrontEndConfigs.bgColor,
         body: _getUI(context),
       ),
@@ -43,11 +43,11 @@ class _ChangePasswordState extends State<ChangePassword> {
                 height: 200,
                 width: 200,
                 child: Image.asset('assets/images/tranparentLogo.png')),
-            AuthTextField(hint: 'New password', controller: newController),
+            AuthTextField(hint: 'Neues Passwort', controller: newController),
             const SizedBox(
               height: 15,
             ),
-            AuthTextField(hint: 'Confirm password', controller: cPwdController),
+            AuthTextField(hint: 'Passwort bestätigen', controller: cPwdController),
             const SizedBox(
               height: 20,
             ),
@@ -56,10 +56,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                   if (cPwdController.text == newController.text) {
                     _changePassword(cPwdController.text);
                   } else {
-                    Fluttertoast.showToast(msg: "Password not match");
+                    Fluttertoast.showToast(msg: "Passwort stimmt nicht überein");
                   }
                 },
-                text: 'Change Password'),
+                text: 'Passwort ändern'),
           ],
         ),
       ),

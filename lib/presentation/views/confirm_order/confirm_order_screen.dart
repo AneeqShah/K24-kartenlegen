@@ -38,7 +38,7 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
             height: 15,
           ),
           CustomText(
-            text: "Payment done!",
+            text: "Zahlung erledigt!",
             fontWeight: FontWeight.w600,
             fontSize: 14,
           ),
@@ -48,7 +48,7 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
           CustomText(
             align: TextAlign.center,
             text:
-                "Thank you for using our services.\nPlease wait adviser will reply you within 24 hour",
+                "Vielen Dank, dass Sie unsere Dienste nutzen.\nBitte warten Sie, der Berater wird Ihnen innerhalb von 24 Stunden antworten",
             color: Colors.grey,
             fontWeight: FontWeight.w400,
             fontSize: 12,
@@ -60,7 +60,7 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
               onPressed: () {
                 NavigationHelper.pushReplacement(context, const BottomNavBody());
               },
-              text: "Continue"),
+              text: "Fortsetzen"),
         ],
       ),
     );

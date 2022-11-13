@@ -56,7 +56,7 @@ class _BottomNavBodyState extends State<BottomNavBody> {
                     ? FrontEndConfigs.kPrimaryColor
                     : Colors.grey,
               ),
-              label: 'Home'),
+              label: 'Heim'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.favorite_border,
@@ -64,7 +64,7 @@ class _BottomNavBodyState extends State<BottomNavBody> {
                     ? FrontEndConfigs.kPrimaryColor
                     : Colors.grey,
               ),
-              label: 'Message'),
+              label: 'Nachricht'),
           BottomNavigationBarItem(
               icon: ImageIcon(
                 const AssetImage('assets/images/product.png'),
@@ -72,7 +72,7 @@ class _BottomNavBodyState extends State<BottomNavBody> {
                     ? FrontEndConfigs.kPrimaryColor
                     : Colors.grey,
               ),
-              label: 'Product'),
+              label: 'Produkt'),
           BottomNavigationBarItem(
               icon: ImageIcon(
                 const AssetImage('assets/images/person.png'),
@@ -80,7 +80,7 @@ class _BottomNavBodyState extends State<BottomNavBody> {
                     ? FrontEndConfigs.kPrimaryColor
                     : Colors.grey,
               ),
-              label: 'Account'),
+              label: 'Konto'),
         ],
       ),
     );

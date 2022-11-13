@@ -29,7 +29,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar("Profile" ,showIcon: true),
+      appBar: customAppBar("Profil" ,showIcon: true),
       backgroundColor: FrontEndConfigs.bgColor,
       body: UpdateProfileBody(
           fullName: widget.fullName,

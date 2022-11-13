@@ -23,7 +23,7 @@ class PaymentCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomText(
-              text: "Asked question",
+              text: "Frage gestellt",
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
@@ -47,7 +47,7 @@ class PaymentCard extends StatelessWidget {
                 Row(
                   children: [
                     CustomText(
-                      text: "Price: ",
+                      text: "Preis:",
                       color: Colors.black54,
                       fontSize: 12,
                       fontWeight: FontWeight.w500,

@@ -69,7 +69,7 @@ class _ProductBodyState extends State<ProductBody> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              CustomText(text: "First Free Question"),
+                              CustomText(text: "Erste kostenlose Frage"),
                               Container(
                                 height: 30,
                                 width: 80,
@@ -78,7 +78,7 @@ class _ProductBodyState extends State<ProductBody> {
                                     color: FrontEndConfigs.kPrimaryColor),
                                 child: Center(
                                     child: CustomText(
-                                  text: "Free",
+                                  text: "Frei",
                                   color: Colors.white,
                                 )),
                               )

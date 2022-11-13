@@ -26,7 +26,7 @@ class HomeBody extends StatelessWidget {
               height: 10,
             ),
             CustomText(
-              text: 'Our Services',
+              text: 'Unsere Leistungen',
               fontWeight: FontWeight.w600,
               fontSize: 17,
               color: Colors.purple.shade900,

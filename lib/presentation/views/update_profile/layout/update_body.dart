@@ -125,7 +125,7 @@ class _UpdateProfileBodyState extends State<UpdateProfileBody> {
                 height: 30,
               ),
               CustomText(
-                text: 'Full Name',
+                text: 'Vollständiger Name',
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
               ),
@@ -144,7 +144,7 @@ class _UpdateProfileBodyState extends State<UpdateProfileBody> {
                 height: 15,
               ),
               CustomText(
-                text: 'Date of Birth',
+                text: 'Geburtsdatum',
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
               ),
@@ -161,7 +161,7 @@ class _UpdateProfileBodyState extends State<UpdateProfileBody> {
                     children: [
                       CustomText(
                           text: dobController.text == ""
-                              ? "Select Date of Birth"
+                              ? "Geburtsdatum auswählen"
                               : dobController.text),
                       IconButton(
                           onPressed: () async {
@@ -192,22 +192,22 @@ class _UpdateProfileBodyState extends State<UpdateProfileBody> {
                 fontWeight: FontWeight.w600,
               ),
               AuthTextField(
-                  hint: 'Enter your sign', controller: zodiacController),
+                  hint: 'Geben Sie Ihr Zeichen ein', controller: zodiacController),
               const SizedBox(
                 height: 15,
               ),
               CustomText(
-                text: 'Country',
+                text: 'Land',
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
               ),
               AuthTextField(
-                  hint: 'Enter your Country', controller: countryController),
+                  hint: 'Geben Sie Ihr Land ein', controller: countryController),
               const SizedBox(
                 height: 15,
               ),
               CustomText(
-                text: 'Gender',
+                text: 'Geschlecht',
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
               ),
@@ -219,7 +219,7 @@ class _UpdateProfileBodyState extends State<UpdateProfileBody> {
                     SizedBox(
                       width: 150,
                       child: ListTile(
-                        title: const Text('Male'),
+                        title: const Text('Männlich'),
                         leading: Radio<Gender>(
                           value: Gender.male,
                           groupValue: _gender,
@@ -234,7 +234,7 @@ class _UpdateProfileBodyState extends State<UpdateProfileBody> {
                     Container(
                       width: 240,
                       child: ListTile(
-                        title: const Text('Female'),
+                        title: const Text('Weiblich'),
                         leading: Radio<Gender>(
                           value: Gender.female,
                           groupValue: _gender,
@@ -253,7 +253,7 @@ class _UpdateProfileBodyState extends State<UpdateProfileBody> {
                   onPressed: () {
                    _updateProfile();
                   },
-                  text: 'Update'),
+                  text: 'Aktualisieren'),
             ],
           ),
         ),

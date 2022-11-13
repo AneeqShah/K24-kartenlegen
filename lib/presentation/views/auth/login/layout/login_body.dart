@@ -44,7 +44,7 @@ class _LoginBodyState extends State<LoginBody> {
                 height: 30,
               ),
               CustomText(
-                text: 'Sign in',
+                text: 'Einloggen',
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
               ),
@@ -52,7 +52,7 @@ class _LoginBodyState extends State<LoginBody> {
                 height: 10,
               ),
               CustomText(
-                text: 'Welcome to Kartenlegen24\nLogin to continue',
+                text: 'Willkommen zu Kartenlegen24\nMelden Sie sich an, um fortzufahren',
                 fontSize: 11,
                 fontWeight: FontWeight.w300,
               ),
@@ -60,35 +60,35 @@ class _LoginBodyState extends State<LoginBody> {
                 height: 25,
               ),
               CustomText(text: 'Email'),
-              AuthTextField(hint: 'user@gmail.com', controller: emailController),
+              AuthTextField(hint: 'Benutzer@gmail.com', controller: emailController),
               const SizedBox(
                 height: 15,
               ),
-              CustomText(text: 'Password'),
+              CustomText(text: 'Passwort'),
               AuthTextField(hint: '**********', controller: passwordController),
-              const SizedBox(
-                height: 10,
-              ),
-              Align(
-                  alignment: Alignment.bottomRight,
-                  child: CustomText(
-                    text: 'Forgot Password?',
-                    fontWeight: FontWeight.w500,
-                  )),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              // Align(
+              //     alignment: Alignment.bottomRight,
+              //     child: CustomText(
+              //       text: 'Passwort vergessen?',
+              //       fontWeight: FontWeight.w500,
+              //     )),
               const SizedBox(
                 height: 30,
               ),
               AppButton(
                   onPressed: () {
                     if (emailController.text.trim() == "") {
-                      Fluttertoast.showToast(msg: "Email can't be empty");
+                      Fluttertoast.showToast(msg: "E-Mail darf nicht leer sein");
                     } else if (passwordController.text.trim() == "") {
-                      Fluttertoast.showToast(msg: "Password can't be empty");
+                      Fluttertoast.showToast(msg: "Das Passwort darf nicht leer sein");
                     } else {
                       userLogin();
                     }
                   },
-                  text: 'Login'),
+                  text: 'Anmeldung'),
             ],
           ),
         ),
@@ -121,11 +121,11 @@ class _LoginBodyState extends State<LoginBody> {
       return showDialog(
           context: context,
           builder: (_) => AlertDialog(
-                title: const Text('Email not-Verified'),
-                content: const Text('Kindly verify your email to continue'),
+                title: const Text('E-Mail nicht verifiziert'),
+                content: const Text('Bitte bestätigen Sie Ihre E-Mail, um fortzufahren'),
                 actions: [
                   TextButton(
-                    child: const Text("Cancel"),
+                    child: const Text("Absagen"),
                     onPressed: () {
                       Navigator.pop(context);
                     },

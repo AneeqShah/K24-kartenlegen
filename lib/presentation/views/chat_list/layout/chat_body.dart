@@ -43,7 +43,7 @@ class _ChatListBodyState extends State<ChatListBody> {
                       NavigationHelper.pushRoute(context, ChatView());
                     },
                     child: ChatListTile(
-                        title: 'Adviser',
+                        title: 'Beraterin',
                         date: uploadTime,
                         desc:
                             chat[i]["isImage"] ? "Image" : chat[i]["question"]),

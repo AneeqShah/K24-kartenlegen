@@ -18,8 +18,8 @@ class RegisterView extends StatelessWidget {
           },
           child: Row(mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CustomText(text: 'Already have an account.'),
-              CustomText(text: 'Log In',color: FrontEndConfigs.kPrimaryColor,),
+              CustomText(text: 'Sie haben bereits ein Konto.'),
+              CustomText(text: 'Einloggen',color: FrontEndConfigs.kPrimaryColor,),
             ],
           ),
         ),

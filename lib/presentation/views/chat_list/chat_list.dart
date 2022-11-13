@@ -10,7 +10,7 @@ class ChatList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar('Conversation'),
+      appBar: customAppBar('Gespräch'),
       backgroundColor: FrontEndConfigs.bgColor,
       body: ChatListBody(),
     );

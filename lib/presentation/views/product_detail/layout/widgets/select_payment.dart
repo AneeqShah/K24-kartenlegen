@@ -30,7 +30,7 @@ class SelectPayment extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomText(
-              text: 'Ask your Question?',
+              text: 'Stell deine Frage?',
               fontSize: 12,
               fontWeight: FontWeight.w500,
             ),
@@ -49,7 +49,7 @@ class SelectPayment extends StatelessWidget {
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                   border: InputBorder.none,
-                  hintText: "Write your question here",
+                  hintText: "Schreiben Sie hier Ihre Frage",
                   hintStyle: TextStyle(
                     color: Colors.grey,
                     fontSize: 12,
@@ -62,8 +62,8 @@ class SelectPayment extends StatelessWidget {
               height: 10,
             ),
             CustomText(
-              text: 'Select payment'
-                  'Method',
+              text: 'Zahlung auswählen'
+                  'Methode',
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -71,8 +71,8 @@ class SelectPayment extends StatelessWidget {
               height: 10,
             ),
             isFree
-                ? AppButton(onPressed: () => onFree(), text: "Ask for free")
-                : AppButton(onPressed: () => onStripe(), text: "Continue to Pay")
+                ? AppButton(onPressed: () => onFree(), text: "Kostenlos anfragen")
+                : AppButton(onPressed: () => onStripe(), text: "Weiter bezahlen")
           ],
         ),
       ),

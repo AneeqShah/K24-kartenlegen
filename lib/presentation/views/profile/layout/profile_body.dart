@@ -73,7 +73,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                             ));
                       },
                       child: CustomText(
-                        text: 'Edit Profile',
+                        text: 'Profil bearbeiten',
                         fontWeight: FontWeight.w400,
                         fontSize: 11,
                       ),
@@ -100,7 +100,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                       country: country,
                     ));
               },
-              child: CustomText(text: 'Profile')),
+              child: CustomText(text: 'Profil')),
           const SizedBox(
             height: 10,
           ),
@@ -112,7 +112,7 @@ class _ProfileBodyState extends State<ProfileBody> {
               onTap: () {
                 NavigationHelper.pushRoute(context, PaymentHistory());
               },
-              child: CustomText(text: 'Payment History')),
+              child: CustomText(text: 'Zahlungshistorie')),
           const SizedBox(
             height: 10,
           ),
@@ -124,7 +124,7 @@ class _ProfileBodyState extends State<ProfileBody> {
               onTap: () {
                 NavigationHelper.pushRoute(context, ChangePassword());
               },
-              child: CustomText(text: 'Change password')),
+              child: CustomText(text: 'Passwort ändern')),
           const SizedBox(
             height: 10,
           ),
@@ -133,7 +133,7 @@ class _ProfileBodyState extends State<ProfileBody> {
             height: 10,
           ),
           CustomText(
-            text: 'Rate app',
+            text: 'Bewertungs App',
           ),
           const SizedBox(
             height: 10,
@@ -162,7 +162,7 @@ class _ProfileBodyState extends State<ProfileBody> {
               NavigationHelper.pushRoute(context, EmergencyContact());
             },
             child: CustomText(
-              text: 'Emergency Contact\'s',
+              text: 'Notfallkontakte',
             ),
           ),
           const SizedBox(
@@ -203,10 +203,10 @@ class _ProfileBodyState extends State<ProfileBody> {
               showDialog(
                   context: context,
                   builder: (BuildContext context) => CupertinoAlertDialog(
-                        title: Text("Delete Account"),
+                        title: Text("Konto löschen"),
                         content: CustomText(
                           text:
-                              "Are you sure you want to delete your account? You will lose all your data permanently.",
+                              "Möchten Sie Ihr Konto wirklich löschen? Sie werden alle Ihre Daten dauerhaft verlieren.",
                           // color: Colors.grey.shade600,
                           fontSize: 13,
                           fontWeight: FontWeight.w400,
@@ -215,7 +215,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                           CupertinoDialogAction(
                             isDefaultAction: true,
                             child: CustomText(
-                              text: "Delete",
+                              text: "Löschen",
                               color: Colors.red,
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
@@ -225,7 +225,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                             },
                           ),
                           CupertinoDialogAction(
-                            child: Text("No"),
+                            child: Text("Nein"),
                             onPressed: () {
                               Navigator.pop(context);
                             },
@@ -234,7 +234,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                       ));
             },
             child: CustomText(
-              text: 'Delete account',
+              text: 'Konto löschen',
               color: Colors.red,
             ),
           ),
@@ -250,7 +250,7 @@ class _ProfileBodyState extends State<ProfileBody> {
               _logout();
             },
             child: CustomText(
-              text: 'Logout',
+              text: 'Ausloggen',
               color: Colors.red,
             ),
           ),

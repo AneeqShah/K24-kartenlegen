@@ -57,7 +57,7 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
                 height: 20,
               ),
               CustomImageContainer(
-                  height: 200,
+                  height: MediaQuery.of(context).size.width,
                   wight: MediaQuery.of(context).size.width,
                   radius: 8,
                   image: widget.image),
@@ -97,7 +97,7 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
                 height: 10,
               ),
               CustomText(
-                text: 'Description',
+                text: 'Beschreibung',
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
               ),
@@ -127,7 +127,7 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
                     if (value == true) {
                       await _confirmOrder();
                     } else {
-                      Fluttertoast.showToast(msg: "Failed Try again");
+                      // Fluttertoast.showToast(msg: "Fehlgeschlagen Versuchen Sie es erneut");
                     }
                   });
                 },

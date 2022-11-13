@@ -44,7 +44,7 @@ class _EmergencyContactState extends State<EmergencyContact> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: FrontEndConfigs.bgColor,
-      appBar: customAppBar('Emergency Contact', showIcon: true),
+      appBar: customAppBar('Notfallkontakt', showIcon: true),
       body: _getUI(context),
     );
   }

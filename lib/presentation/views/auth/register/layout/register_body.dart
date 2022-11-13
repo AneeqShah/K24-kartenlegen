@@ -34,7 +34,7 @@ class _RegisterBodyState extends State<RegisterBody> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomText(
-              text: 'Sign Up',
+              text: 'Anmeldung',
               fontSize: 22,
               fontWeight: FontWeight.w600,
             ),
@@ -42,29 +42,29 @@ class _RegisterBodyState extends State<RegisterBody> {
               height: 5,
             ),
             CustomText(
-              text: 'Create account to continue',
+              text: 'Erstellen Sie ein Konto,\num fortzufahren',
               fontSize: 11,
               fontWeight: FontWeight.w300,
             ),
             const SizedBox(
               height: 25,
             ),
-            CustomText(text: 'Full Name'),
+            CustomText(text: 'Vollständiger Name'),
             AuthTextField(hint: 'John Wick', controller: fullName),
             const SizedBox(
               height: 15,
             ),
-            CustomText(text: 'Country'),
+            CustomText(text: 'Land'),
             AuthTextField(hint: 'US', controller: country),
             const SizedBox(
               height: 15,
             ),
             CustomText(text: 'Email'),
-            AuthTextField(hint: 'user@gmail.com', controller: emailController),
+            AuthTextField(hint: 'Benutzer@gmail.com', controller: emailController),
             const SizedBox(
               height: 15,
             ),
-            CustomText(text: 'Password'),
+            CustomText(text: 'Passwort'),
             AuthTextField(hint: '**********', controller: pwdController),
             const SizedBox(
               height: 30,
@@ -72,18 +72,18 @@ class _RegisterBodyState extends State<RegisterBody> {
             AppButton(
                 onPressed: () {
                   if (fullName.text.trim() == "") {
-                    Fluttertoast.showToast(msg: "Fullname can't be empty");
+                    Fluttertoast.showToast(msg: "Vollständiger Name darf nicht leer sein");
                   } else if (country.text.trim() == "") {
-                    Fluttertoast.showToast(msg: "Country can't be empty");
+                    Fluttertoast.showToast(msg: "Land darf nicht leer sein");
                   } else if (emailController.text.trim() == "") {
-                    Fluttertoast.showToast(msg: "Email can't be empty");
+                    Fluttertoast.showToast(msg: "Email kann nicht leer sein");
                   } else if (pwdController.text.trim() == "") {
-                    Fluttertoast.showToast(msg: "Password can't be empty");
+                    Fluttertoast.showToast(msg: "Das Passwort darf nicht leer sein");
                   } else {
                     _signupUser();
                   }
                 },
-                text: 'Sign Up'),
+                text: 'Anmeldung'),
           ],
         ),
       ),
@@ -119,12 +119,12 @@ class _RegisterBodyState extends State<RegisterBody> {
           return showDialog(
               context: context,
               builder: (_) => AlertDialog(
-                    title: const Text('Email Verification'),
+                    title: const Text('E-Mail-Verifizierung'),
                     content: const Text(
-                        'Kindly verify your email to continue.After verification kindly go to login screen to for login'),
+                        'Bitte bestätigen Sie Ihre E-Mail-Adresse, um fortzufahren. Gehen Sie nach der Bestätigung zum Anmeldebildschirm, um sich anzumelden'),
                     actions: [
                       TextButton(
-                        child: const Text("Login"),
+                        child: const Text("Anmeldung"),
                         onPressed: () {
                           NavigationHelper.pushReplacement(
                               context, LoginView());
