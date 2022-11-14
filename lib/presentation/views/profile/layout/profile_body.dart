@@ -39,226 +39,228 @@ class _ProfileBodyState extends State<ProfileBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(18.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              CustomImageContainer(
-                  height: 50 , wight: 50, radius: 500, image: userImage),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomText(
-                      text: userName,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        NavigationHelper.pushRoute(
-                            context,
-                            UpdateProfile(
-                              fullName: userName,
-                              image: userImage,
-                              email: email,
-                              dob: dob,
-                              zodiac: zodiac,
-                              gender: gender,
-                              country: country,
-                            ));
-                      },
-                      child: CustomText(
-                        text: 'Profil bearbeiten',
-                        fontWeight: FontWeight.w400,
-                        fontSize: 11,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                CustomImageContainer(
+                    height: 50 , wight: 50, radius: 500, image: userImage),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomText(
+                        text: userName,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          GestureDetector(
-              onTap: () {
-                NavigationHelper.pushRoute(
-                    context,
-                    UpdateProfile(
-                      fullName: userName,
-                      image: userImage,
-                      email: email,
-                      dob: dob,
-                      zodiac: zodiac,
-                      gender: gender,
-                      country: country,
-                    ));
-              },
-              child: CustomText(text: 'Profil')),
-          const SizedBox(
-            height: 10,
-          ),
-          const Divider(),
-          const SizedBox(
-            height: 10,
-          ),
-          InkWell(
-              onTap: () {
-                NavigationHelper.pushRoute(context, PaymentHistory());
-              },
-              child: CustomText(text: 'Zahlungshistorie')),
-          const SizedBox(
-            height: 10,
-          ),
-          const Divider(),
-          const SizedBox(
-            height: 10,
-          ),
-          InkWell(
-              onTap: () {
-                NavigationHelper.pushRoute(context, ChangePassword());
-              },
-              child: CustomText(text: 'Passwort ändern')),
-          const SizedBox(
-            height: 10,
-          ),
-          const Divider(),
-          const SizedBox(
-            height: 10,
-          ),
-          CustomText(
-            text: 'Bewertungs App',
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Divider(),
-          const SizedBox(
-            height: 10,
-          ),
-          InkWell(
-            onTap: () {
-              NavigationHelper.pushRoute(context, FaqScreen());
-            },
-            child: CustomText(
-              text: 'FAQ',
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Divider(),
-          const SizedBox(
-            height: 10,
-          ),
-          InkWell(
-            onTap: () {
-              NavigationHelper.pushRoute(context, EmergencyContact());
-            },
-            child: CustomText(
-              text: 'Notfallkontakte',
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Divider(),
-          const SizedBox(
-            height: 10,
-          ),
-          InkWell(
-              onTap: () {
-                _launchUrl(
-                    "https://docs.google.com/document/d/1D5csZ9p6k6cMMRjTtnT2uEqFf9Wxxvegx9POBLuxAwY/edit?usp=sharing");
-              },
-              child: CustomText(text: 'Term & Conditions')),
-          const SizedBox(
-            height: 10,
-          ),
-          const Divider(),
-          const SizedBox(
-            height: 10,
-          ),
-          InkWell(
-              onTap: () {
-                _launchUrl(
-                    "https://docs.google.com/document/d/19FmL1Tj4UAa3bLwi9Woq-azlg0Pa48PkfpbrG4HLNVc/edit?usp=sharing");
-              },
-              child: CustomText(text: 'Privacy Policy')),
-          const SizedBox(
-            height: 10,
-          ),
-          const Divider(),
-          const SizedBox(
-            height: 10,
-          ),
-          InkWell(
-            onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) => CupertinoAlertDialog(
-                        title: Text("Konto löschen"),
-                        content: CustomText(
-                          text:
-                              "Möchten Sie Ihr Konto wirklich löschen? Sie werden alle Ihre Daten dauerhaft verlieren.",
-                          // color: Colors.grey.shade600,
-                          fontSize: 13,
+                      InkWell(
+                        onTap: () {
+                          NavigationHelper.pushRoute(
+                              context,
+                              UpdateProfile(
+                                fullName: userName,
+                                image: userImage,
+                                email: email,
+                                dob: dob,
+                                zodiac: zodiac,
+                                gender: gender,
+                                country: country,
+                              ));
+                        },
+                        child: CustomText(
+                          text: 'Profil bearbeiten',
                           fontWeight: FontWeight.w400,
+                          fontSize: 11,
                         ),
-                        actions: <Widget>[
-                          CupertinoDialogAction(
-                            isDefaultAction: true,
-                            child: CustomText(
-                              text: "Löschen",
-                              color: Colors.red,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                            ),
-                            onPressed: () {
-                              _deleteAccount();
-                            },
-                          ),
-                          CupertinoDialogAction(
-                            child: Text("Nein"),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          )
-                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            GestureDetector(
+                onTap: () {
+                  NavigationHelper.pushRoute(
+                      context,
+                      UpdateProfile(
+                        fullName: userName,
+                        image: userImage,
+                        email: email,
+                        dob: dob,
+                        zodiac: zodiac,
+                        gender: gender,
+                        country: country,
                       ));
-            },
-            child: CustomText(
-              text: 'Konto löschen',
-              color: Colors.red,
+                },
+                child: CustomText(text: 'Profil')),
+            const SizedBox(
+              height: 10,
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Divider(),
-          const SizedBox(
-            height: 10,
-          ),
-          InkWell(
-            onTap: () {
-              _logout();
-            },
-            child: CustomText(
-              text: 'Ausloggen',
-              color: Colors.red,
+            const Divider(),
+            const SizedBox(
+              height: 10,
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Divider(),
-        ],
+            InkWell(
+                onTap: () {
+                  NavigationHelper.pushRoute(context, PaymentHistory());
+                },
+                child: CustomText(text: 'Zahlungshistorie')),
+            const SizedBox(
+              height: 10,
+            ),
+            const Divider(),
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+                onTap: () {
+                  NavigationHelper.pushRoute(context, ChangePassword());
+                },
+                child: CustomText(text: 'Passwort ändern')),
+            const SizedBox(
+              height: 10,
+            ),
+            const Divider(),
+            const SizedBox(
+              height: 10,
+            ),
+            CustomText(
+              text: 'App Bewerten',
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Divider(),
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              onTap: () {
+                NavigationHelper.pushRoute(context, FaqScreen());
+              },
+              child: CustomText(
+                text: 'FAQ',
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Divider(),
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              onTap: () {
+                NavigationHelper.pushRoute(context, EmergencyContact());
+              },
+              child: CustomText(
+                text: 'Notfallkontakte',
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Divider(),
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+                onTap: () {
+                  _launchUrl(
+                      "https://docs.google.com/document/d/1D5csZ9p6k6cMMRjTtnT2uEqFf9Wxxvegx9POBLuxAwY/edit?usp=sharing");
+                },
+                child: CustomText(text: 'Term & Conditions')),
+            const SizedBox(
+              height: 10,
+            ),
+            const Divider(),
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+                onTap: () {
+                  _launchUrl(
+                      "https://docs.google.com/document/d/19FmL1Tj4UAa3bLwi9Woq-azlg0Pa48PkfpbrG4HLNVc/edit?usp=sharing");
+                },
+                child: CustomText(text: 'Privacy Policy')),
+            const SizedBox(
+              height: 10,
+            ),
+            const Divider(),
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) => CupertinoAlertDialog(
+                          title: Text("Konto löschen"),
+                          content: CustomText(
+                            text:
+                                "Möchten Sie Ihr Konto wirklich löschen? Sie werden alle Ihre Daten dauerhaft verlieren.",
+                            // color: Colors.grey.shade600,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          actions: <Widget>[
+                            CupertinoDialogAction(
+                              isDefaultAction: true,
+                              child: CustomText(
+                                text: "Löschen",
+                                color: Colors.red,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                              ),
+                              onPressed: () {
+                                _deleteAccount();
+                              },
+                            ),
+                            CupertinoDialogAction(
+                              child: Text("Nein"),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            )
+                          ],
+                        ));
+              },
+              child: CustomText(
+                text: 'Konto löschen',
+                color: Colors.red,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Divider(),
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              onTap: () {
+                _logout();
+              },
+              child: CustomText(
+                text: 'Ausloggen',
+                color: Colors.red,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Divider(),
+          ],
+        ),
       ),
     );
   }

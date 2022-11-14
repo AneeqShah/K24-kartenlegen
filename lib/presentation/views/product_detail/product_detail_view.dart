@@ -34,7 +34,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
     return Scaffold(
       backgroundColor: FrontEndConfigs.bgColor,
 
-      appBar: customAppBar('Produkt', showIcon: true),
+      appBar: customAppBar('Produkte', showIcon: true),
       body: ProductDetailBody(
         image: widget.image,
         title: widget.title,

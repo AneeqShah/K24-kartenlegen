@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>Need your Media permission to upload your profile image</string>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>Need your camera permission to upload your profile image</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>

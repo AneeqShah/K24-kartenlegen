@@ -48,8 +48,7 @@ class _ProductBodyState extends State<ProductBody> {
                                 "https://i.ibb.co/Pt7v7XC/tarot-gf8486537e-1920.jpg",
                             title: "Erste Frage Gratis",
                             price: "FREE",
-                            description:
-                                "Erste Gratis Frage einlösen",
+                            description: "Erste Gratis Frage einlösen",
                             minRange: "100",
                             maxRange: "500",
                             productID: "free-${prodID}",
@@ -90,7 +89,9 @@ class _ProductBodyState extends State<ProductBody> {
                   )
                 : Container(),
             Container(
-              height: MediaQuery.of(context).size.height * 0.7,
+              height: isFirstQuestion
+                  ? MediaQuery.of(context).size.height * 0.7
+                  : MediaQuery.of(context).size.height* 0.79,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
                   itemCount: allProducts.length,
@@ -133,8 +134,10 @@ class _ProductBodyState extends State<ProductBody> {
   _getProducts() async {
     await FirebaseFirestore.instance
         .collection("products")
+        .orderBy("time", descending: false)
         .snapshots()
         .listen((QuerySnapshot snapshot) {
+      allProducts.clear();
       snapshot.docs.forEach((element) {
         allProducts.add(element);
       });

@@ -56,7 +56,7 @@ class _BottomNavBodyState extends State<BottomNavBody> {
                     ? FrontEndConfigs.kPrimaryColor
                     : Colors.grey,
               ),
-              label: 'Heim'),
+              label: 'Home'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.favorite_border,
@@ -72,7 +72,7 @@ class _BottomNavBodyState extends State<BottomNavBody> {
                     ? FrontEndConfigs.kPrimaryColor
                     : Colors.grey,
               ),
-              label: 'Produkt'),
+              label: 'Produkte'),
           BottomNavigationBarItem(
               icon: ImageIcon(
                 const AssetImage('assets/images/person.png'),

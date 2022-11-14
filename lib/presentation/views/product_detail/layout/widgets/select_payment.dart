@@ -62,8 +62,7 @@ class SelectPayment extends StatelessWidget {
               height: 10,
             ),
             CustomText(
-              text: 'Zahlung auswählen'
-                  'Methode',
+              text: 'Zahlungsmethode\nauswählen',
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),

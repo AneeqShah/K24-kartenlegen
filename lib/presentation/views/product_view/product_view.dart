@@ -11,7 +11,7 @@ class ProductView extends StatelessWidget {
     return Scaffold(
       backgroundColor: FrontEndConfigs.bgColor,
 
-      appBar: customAppBar('Produkt'),
+      appBar: customAppBar('Produkte'),
       body: const ProductBody(),
     );
   }
