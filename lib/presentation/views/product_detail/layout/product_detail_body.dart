@@ -164,7 +164,8 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
             .set({
           "customerID": userID,
           "isAnswered": false,
-          "time": DateTime.now().millisecondsSinceEpoch
+          "time": DateTime.now().millisecondsSinceEpoch,
+          "productID":widget.productID,
         }, SetOptions(merge: true));
       }).then((value) async {
         String chatID = FirebaseFirestore.instance
