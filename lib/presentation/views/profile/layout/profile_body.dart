@@ -201,44 +201,14 @@ class _ProfileBodyState extends State<ProfileBody> {
             ),
             InkWell(
               onTap: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) => CupertinoAlertDialog(
-                          title: Text("Konto löschen"),
-                          content: CustomText(
-                            text:
-                                "Möchten Sie Ihr Konto wirklich löschen? Sie werden alle Ihre Daten dauerhaft verlieren.",
-                            // color: Colors.grey.shade600,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400,
-                          ),
-                          actions: <Widget>[
-                            CupertinoDialogAction(
-                              isDefaultAction: true,
-                              child: CustomText(
-                                text: "Löschen",
-                                color: Colors.red,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                              ),
-                              onPressed: () {
-                                _deleteAccount();
-                              },
-                            ),
-                            CupertinoDialogAction(
-                              child: Text("Nein"),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            )
-                          ],
-                        ));
+                _logout();
               },
               child: CustomText(
-                text: 'Konto löschen',
+                text: 'Ausloggen',
                 color: Colors.red,
               ),
             ),
+
             const SizedBox(
               height: 10,
             ),
@@ -248,13 +218,45 @@ class _ProfileBodyState extends State<ProfileBody> {
             ),
             InkWell(
               onTap: () {
-                _logout();
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) => CupertinoAlertDialog(
+                      title: Text("Konto löschen"),
+                      content: CustomText(
+                        text:
+                        "Möchten Sie Ihr Konto wirklich löschen? Sie werden alle Ihre Daten dauerhaft verlieren.",
+                        // color: Colors.grey.shade600,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      actions: <Widget>[
+                        CupertinoDialogAction(
+                          isDefaultAction: true,
+                          child: CustomText(
+                            text: "Löschen",
+                            color: Colors.red,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                          onPressed: () {
+                            _deleteAccount();
+                          },
+                        ),
+                        CupertinoDialogAction(
+                          child: Text("Nein"),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        )
+                      ],
+                    ));
               },
               child: CustomText(
-                text: 'Ausloggen',
+                text: 'Konto löschen',
                 color: Colors.red,
               ),
             ),
+
             const SizedBox(
               height: 10,
             ),

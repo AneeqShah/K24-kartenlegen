@@ -91,7 +91,7 @@ class _ProductBodyState extends State<ProductBody> {
             Container(
               height: isFirstQuestion
                   ? MediaQuery.of(context).size.height * 0.7
-                  : MediaQuery.of(context).size.height* 0.79,
+                  : MediaQuery.of(context).size.height* 0.76,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
                   itemCount: allProducts.length,

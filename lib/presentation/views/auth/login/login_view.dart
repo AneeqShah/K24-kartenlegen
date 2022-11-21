@@ -20,8 +20,8 @@ class LoginView extends StatelessWidget {
           },
           child: Row(mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CustomText(text: 'Ich habe kein Konto.'),
-              CustomText(text: 'Anmeldung',color: FrontEndConfigs.kPrimaryColor,),
+              CustomText(text: 'Ich habe keine Konto. '),
+              CustomText(text: 'Registrieren',color: FrontEndConfigs.kPrimaryColor,),
             ],
           ),
         ),

@@ -226,8 +226,8 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
               paymentSheetParameters: SetupPaymentSheetParameters(
                   paymentIntentClientSecret:
                       paymentIntentData!['client_secret'],
-                  applePay: true,
-                  googlePay: true,
+                  applePay: false,
+                  googlePay: false,
                   testEnv: true,
                   style: ThemeMode.dark,
                   currencyCode: 'EUR',
