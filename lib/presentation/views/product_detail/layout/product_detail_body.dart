@@ -165,44 +165,53 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
           "customerID": userID,
           "isAnswered": false,
           "time": DateTime.now().millisecondsSinceEpoch,
-          "productID":widget.productID,
+          "productID": widget.productID,
         }, SetOptions(merge: true));
       }).then((value) async {
-        String chatID = FirebaseFirestore.instance
-            .collection("chat")
-            .doc(orderID)
-            .collection("messages")
-            .doc()
-            .id;
         await FirebaseFirestore.instance
             .collection("questions")
             .doc(userID)
-            .collection("chat")
-            .doc(chatID)
             .set({
-          "userID": userID,
-          "question": _question.text,
-          "orderID": orderID,
-          "chatID": chatID,
-          "isImage": false,
-          "time": DateTime.now().millisecondsSinceEpoch,
-        }).then((value) async {
-          String graphID =
-              FirebaseFirestore.instance.collection("graph").doc().id;
+          "productTitle": widget.title,
+          "productPrice": widget.price,
+          "productID": widget.productID
+        }, SetOptions(merge: true)).then((value) async {
+          String chatID = FirebaseFirestore.instance
+              .collection("chat")
+              .doc(orderID)
+              .collection("messages")
+              .doc()
+              .id;
           await FirebaseFirestore.instance
-              .collection("graph")
-              .doc(graphID)
+              .collection("questions")
+              .doc(userID)
+              .collection("chat")
+              .doc(chatID)
               .set({
-            "price": widget.price,
-            "customerID": userID,
-            "graphID": graphID
-          }).then((value) {
-            FirebaseFirestore.instance.collection("Users").doc(userID).set({
-              "firstQuestion": false,
-            }, SetOptions(merge: true)).then((value) {
-              loadingFalse();
-              NavigationHelper.pushReplacement(
-                  context, const ConfirmOrderScreen());
+            "userID": userID,
+            "question": _question.text,
+            "orderID": orderID,
+            "chatID": chatID,
+            "isImage": false,
+            "time": DateTime.now().millisecondsSinceEpoch,
+          }).then((value) async {
+            String graphID =
+                FirebaseFirestore.instance.collection("graph").doc().id;
+            await FirebaseFirestore.instance
+                .collection("graph")
+                .doc(graphID)
+                .set({
+              "price": widget.price,
+              "customerID": userID,
+              "graphID": graphID
+            }).then((value) {
+              FirebaseFirestore.instance.collection("Users").doc(userID).set({
+                "firstQuestion": false,
+              }, SetOptions(merge: true)).then((value) {
+                loadingFalse();
+                NavigationHelper.pushReplacement(
+                    context, const ConfirmOrderScreen());
+              });
             });
           });
         });
