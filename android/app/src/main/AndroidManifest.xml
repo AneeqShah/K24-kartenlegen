@@ -17,7 +17,7 @@
         </intent>
     </queries>
     <application
-        android:label="k24"
+        android:label="Kartenlegen24"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

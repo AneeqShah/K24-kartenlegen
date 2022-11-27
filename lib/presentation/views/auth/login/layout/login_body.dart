@@ -103,7 +103,8 @@ class _LoginBodyState extends State<LoginBody> {
           .signInWithEmailAndPassword(
               email: emailController.text, password: passwordController.text)
           .then((value) async {
-        NavigationHelper.pushRoute(context, const BottomNavBody());
+        // NavigationHelper.pushRoute(context, const BottomNavBody());
+        _checkVerification();
       });
     } on FirebaseException catch (e) {
       loadingFalse();

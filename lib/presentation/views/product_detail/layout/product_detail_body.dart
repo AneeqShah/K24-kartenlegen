@@ -237,7 +237,7 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
                       paymentIntentData!['client_secret'],
                   applePay: false,
                   googlePay: false,
-                  testEnv: true,
+                  testEnv: false,
                   style: ThemeMode.dark,
                   currencyCode: 'EUR',
                   merchantCountryCode: 'EUR',
@@ -306,7 +306,7 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
           body: body,
           headers: {
             'Authorization':
-                'Bearer sk_test_51Ln3A4HdUEl3CEFmy89WdHGUM2eQCxFvxIgJgyOEZsg6m8T93bz5k5NepIvBVCl9di8iQxYRxZuNCysvv0mATSEw00Fs7M28Pv',
+                'Bearer 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',
             'Content-Type': 'application/x-www-form-urlencoded'
           });
       print('Create Intent reponse ===> ${response.body.toString()}');
