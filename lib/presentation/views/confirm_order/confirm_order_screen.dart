@@ -3,8 +3,8 @@ import 'package:k24/navigation_helper/navigation_helper.dart';
 import 'package:k24/presentation/elements/app_button.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
 import 'package:lottie/lottie.dart';
-import '../../../config/front_end_config.dart';
 
+import '../../../config/front_end_config.dart';
 import '../../elements/custom_app_bar.dart';
 import '../bottom_nav_bar/bottom_nav_bar.dart';
 
@@ -58,7 +58,8 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
           ),
           AppButton(
               onPressed: () {
-                NavigationHelper.pushReplacement(context, const BottomNavBody());
+                NavigationHelper.pushReplacement(
+                    context, const BottomNavBody());
               },
               text: "Fortsetzen"),
         ],

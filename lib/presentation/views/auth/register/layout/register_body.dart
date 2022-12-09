@@ -60,7 +60,8 @@ class _RegisterBodyState extends State<RegisterBody> {
               height: 15,
             ),
             CustomText(text: 'Email'),
-            AuthTextField(hint: 'Benutzer@gmail.com', controller: emailController),
+            AuthTextField(
+                hint: 'Benutzer@gmail.com', controller: emailController),
             const SizedBox(
               height: 15,
             ),
@@ -72,13 +73,15 @@ class _RegisterBodyState extends State<RegisterBody> {
             AppButton(
                 onPressed: () {
                   if (fullName.text.trim() == "") {
-                    Fluttertoast.showToast(msg: "Vollständiger Name darf nicht leer sein");
+                    Fluttertoast.showToast(
+                        msg: "Vollständiger Name darf nicht leer sein");
                   } else if (country.text.trim() == "") {
                     Fluttertoast.showToast(msg: "Land darf nicht leer sein");
                   } else if (emailController.text.trim() == "") {
                     Fluttertoast.showToast(msg: "Email kann nicht leer sein");
                   } else if (pwdController.text.trim() == "") {
-                    Fluttertoast.showToast(msg: "Das Passwort darf nicht leer sein");
+                    Fluttertoast.showToast(
+                        msg: "Das Passwort darf nicht leer sein");
                   } else {
                     _signupUser();
                   }
