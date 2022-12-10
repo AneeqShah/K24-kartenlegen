@@ -7,6 +7,7 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:k24/app/Custom_image_container.dart';
 import 'package:k24/app/custom_loader.dart';
+import 'package:k24/app/notification_handler.dart';
 import 'package:k24/navigation_helper/navigation_helper.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
 import 'package:k24/presentation/views/product_detail/layout/widgets/select_payment.dart';
@@ -23,16 +24,15 @@ class ProductDetailBody extends StatefulWidget {
   final String productID;
   final bool isFree;
 
-  const ProductDetailBody(
-      {super.key,
-      required this.image,
-      required this.title,
-      required this.price,
-      required this.description,
-      required this.minRange,
-      required this.maxRange,
-      required this.productID,
-      required this.isFree});
+  const ProductDetailBody({super.key,
+    required this.image,
+    required this.title,
+    required this.price,
+    required this.description,
+    required this.minRange,
+    required this.maxRange,
+    required this.productID,
+    required this.isFree});
 
   @override
   State<ProductDetailBody> createState() => _ProductDetailBodyState();
@@ -57,8 +57,14 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
                 height: 20,
               ),
               CustomImageContainer(
-                  height: MediaQuery.of(context).size.width,
-                  wight: MediaQuery.of(context).size.width,
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
+                  wight: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
                   radius: 8,
                   image: widget.image),
               const SizedBox(
@@ -144,7 +150,10 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
   _confirmOrder() async {
     try {
       loadingTrue();
-      String orderID = FirebaseFirestore.instance.collection("order").doc().id;
+      String orderID = FirebaseFirestore.instance
+          .collection("order")
+          .doc()
+          .id;
       await FirebaseFirestore.instance.collection("order").doc(orderID).set({
         "orderID": orderID,
         "customerID": userID,
@@ -152,7 +161,9 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
         "max": widget.maxRange,
         "title": widget.title,
         "askedQuestion": _question.text,
-        "orderTime": DateTime.now().millisecondsSinceEpoch,
+        "orderTime": DateTime
+            .now()
+            .millisecondsSinceEpoch,
         "isAnswered": false,
         "price": widget.isFree ? "0" : widget.price,
       }).then((value) async {
@@ -164,7 +175,9 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
             .set({
           "customerID": userID,
           "isAnswered": false,
-          "time": DateTime.now().millisecondsSinceEpoch,
+          "time": DateTime
+              .now()
+              .millisecondsSinceEpoch,
           "productID": widget.productID,
         }, SetOptions(merge: true));
       }).then((value) async {
@@ -193,10 +206,15 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
             "orderID": orderID,
             "chatID": chatID,
             "isImage": false,
-            "time": DateTime.now().millisecondsSinceEpoch,
+            "time": DateTime
+                .now()
+                .millisecondsSinceEpoch,
           }).then((value) async {
             String graphID =
-                FirebaseFirestore.instance.collection("graph").doc().id;
+                FirebaseFirestore.instance
+                    .collection("graph")
+                    .doc()
+                    .id;
             await FirebaseFirestore.instance
                 .collection("graph")
                 .doc(graphID)
@@ -209,6 +227,12 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
                 "firstQuestion": false,
               }, SetOptions(merge: true)).then((value) {
                 loadingFalse();
+                NotificationHandler().oneToOneNotificationHelper(
+                    docID: 'NaupTnYfJcXauqE54QtRm0n9yPV2',
+                    body: 'You have a new order Kindly Respond',
+                    title: 'You have a new order!',
+                    message: 'order',
+                    location: 'order');
                 NavigationHelper.pushReplacement(
                     context, const ConfirmOrderScreen());
               });
@@ -232,16 +256,16 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
           "$payment", 'EUR'); //json.decode(response.body);
       return await Stripe.instance
           .initPaymentSheet(
-              paymentSheetParameters: SetupPaymentSheetParameters(
-                  paymentIntentClientSecret:
-                      paymentIntentData!['client_secret'],
-                  applePay: false,
-                  googlePay: false,
-                  testEnv: false,
-                  style: ThemeMode.dark,
-                  currencyCode: 'EUR',
-                  merchantCountryCode: 'EUR',
-                  merchantDisplayName: 'K24'))
+          paymentSheetParameters: SetupPaymentSheetParameters(
+              paymentIntentClientSecret:
+              paymentIntentData!['client_secret'],
+              applePay: false,
+              googlePay: false,
+              testEnv: false,
+              style: ThemeMode.dark,
+              currencyCode: 'EUR',
+              merchantCountryCode: 'EUR',
+              merchantDisplayName: 'K24'))
           .then((value) {
         return displayPaymentSheet(
           context,
@@ -257,16 +281,14 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
     }
   }
 
-  Future<bool> displayPaymentSheet(
-    BuildContext context,
-  ) async {
+  Future<bool> displayPaymentSheet(BuildContext context,) async {
     try {
       return await Stripe.instance
           .presentPaymentSheet(
-              parameters: PresentPaymentSheetParameters(
-        clientSecret: paymentIntentData!['client_secret'],
-        confirmPayment: true,
-      ))
+          parameters: PresentPaymentSheetParameters(
+            clientSecret: paymentIntentData!['client_secret'],
+            confirmPayment: true,
+          ))
           .then((newValue) {
         //orderPlaceApi(paymentIntentData!['id'].toString());
 
@@ -282,9 +304,10 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
       print('Exception/DISPLAYPAYMENTSHEET==> $e');
       showDialog(
           context: context,
-          builder: (_) => const AlertDialog(
-                content: Text("Cancelled "),
-              ));
+          builder: (_) =>
+          const AlertDialog(
+            content: Text("Cancelled "),
+          ));
       return Future.value(false);
     } catch (e) {
       loadingFalse();
@@ -306,7 +329,8 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
           body: body,
           headers: {
             'Authorization':
-                'Bearer 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',
+            'Bearer sk_test_51Ln3A4HdUEl3CEFmy89WdHGUM2eQCxFvxIgJgyOEZsg6m8T93bz5k5NepIvBVCl9di8iQxYRxZuNCysvv0mATSEw00Fs7M28Pv',
+            // 'Bearer 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',
             'Content-Type': 'application/x-www-form-urlencoded'
           });
       print('Create Intent reponse ===> ${response.body.toString()}');

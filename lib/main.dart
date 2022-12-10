@@ -35,7 +35,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Stripe.publishableKey =
-      "pk_live_51Ln3A4HdUEl3CEFmGXfyzG1rMoeIR0qJbqg699g1B1EB77uSUTAzEav38Gj1G582a0ZJ1TzM0F5h19azo2LO9QXW002pLVeL3w";
+      "pk_test_51Ln3A4HdUEl3CEFmYUOynFKnzw936xEgqXmxBOgkO5wy9xyovbECMBfEoe5FFwns0GPYjpo0xGmHVaBx8a7NRI2n00QeHlop5R";
+  // "pk_live_51Ln3A4HdUEl3CEFmGXfyzG1rMoeIR0qJbqg699g1B1EB77uSUTAzEav38Gj1G582a0ZJ1TzM0F5h19azo2LO9QXW002pLVeL3w";
   AwesomeNotifications().initialize(
     'resource://drawable/res_notification_app_icon',
     [

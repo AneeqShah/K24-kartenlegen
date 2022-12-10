@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
+import 'package:k24/config/back_end.dart';
 
 class NotificationServices {
   ///Push 1-1 Notification
@@ -17,7 +18,7 @@ class NotificationServices {
         .post(Uri.parse("https://fcm.googleapis.com/fcm/send"),
             headers: {
               "Content-Type": "application/json",
-              "Authorization": "key=${'BackendConfigs.kServerKey'}"
+              "Authorization": "key=${BackendConfigs.kServerKey}"
             },
             body: json.encode({
               "data": {
@@ -49,7 +50,7 @@ class NotificationServices {
         .post(Uri.parse("https://fcm.googleapis.com/fcm/send"),
             headers: {
               "Content-Type": "application/json",
-              "Authorization": "key=${'BackendConfigs.kServerKey'}"
+              "Authorization": "key=${BackendConfigs.kServerKey}"
             },
             body: json.encode({
               "data": {"body": body, "title": title, "sound": "default"},
