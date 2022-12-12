@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>336911521162-b7lk8r8rn1srp4l1jb06m3md9jebr8se.apps.googleusercontent.com</string>
+	<string>336911521162-uer14gfalglssfssjiituhrocgr9s9rm.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.336911521162-b7lk8r8rn1srp4l1jb06m3md9jebr8se</string>
+	<string>com.googleusercontent.apps.336911521162-uer14gfalglssfssjiituhrocgr9s9rm</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBkTadMfeVss4VrCvI2was0CI2ujXnWljQ</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.soloDev.k24</string>
+	<string>com.solodev.k24user</string>
 	<key>PROJECT_ID</key>
 	<string>kartenlegen24-2a340</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:336911521162:ios:597d6194dbd5f1afcde473</string>
+	<string>1:336911521162:ios:f121c9a12bc814d8cde473</string>
 </dict>
 </plist>

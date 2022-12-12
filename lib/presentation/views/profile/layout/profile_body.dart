@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:k24/app/Custom_image_container.dart';
 import 'package:k24/navigation_helper/navigation_helper.dart';
 import 'package:k24/presentation/elements/custom_text.dart';
@@ -31,7 +32,19 @@ class _ProfileBodyState extends State<ProfileBody> {
   String zodiac = "";
   String country = "";
   bool gender = false;
+  final InAppReview _inAppReview = InAppReview.instance;
 
+  String _appStoreId = '6444417445';
+  String _microsoftStoreId = 'com.soloDev.karteblengenUser';
+  void _setMicrosoftStoreId(String id) => _microsoftStoreId = id;
+
+  void _setAppStoreId(String id) => _appStoreId = id;
+
+  Future<void> _requestReview() => _inAppReview.requestReview();
+  Future<void> _openStoreListing() => _inAppReview.openStoreListing(
+    appStoreId: _appStoreId,
+    microsoftStoreId: _microsoftStoreId,
+  );
   @override
   void initState() {
     _getUserID();
@@ -48,7 +61,7 @@ class _ProfileBodyState extends State<ProfileBody> {
             Row(
               children: [
                 CustomImageContainer(
-                    height: 50 , wight: 50, radius: 500, image: userImage),
+                    height: 50, wight: 50, radius: 500, image: userImage),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -133,8 +146,13 @@ class _ProfileBodyState extends State<ProfileBody> {
             const SizedBox(
               height: 10,
             ),
-            CustomText(
-              text: 'App Bewerten',
+            InkWell(
+              onTap: () {
+                _openStoreListing();
+              },
+              child: CustomText(
+                text: 'App Bewerten',
+              ),
             ),
             const SizedBox(
               height: 10,
@@ -208,7 +226,6 @@ class _ProfileBodyState extends State<ProfileBody> {
                 color: Colors.red,
               ),
             ),
-
             const SizedBox(
               height: 10,
             ),
@@ -221,42 +238,41 @@ class _ProfileBodyState extends State<ProfileBody> {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) => CupertinoAlertDialog(
-                      title: Text("Konto löschen"),
-                      content: CustomText(
-                        text:
-                        "Möchten Sie Ihr Konto wirklich löschen? Sie werden alle Ihre Daten dauerhaft verlieren.",
-                        // color: Colors.grey.shade600,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      actions: <Widget>[
-                        CupertinoDialogAction(
-                          isDefaultAction: true,
-                          child: CustomText(
-                            text: "Löschen",
-                            color: Colors.red,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
+                          title: Text("Konto löschen"),
+                          content: CustomText(
+                            text:
+                                "Möchten Sie Ihr Konto wirklich löschen? Sie werden alle Ihre Daten dauerhaft verlieren.",
+                            // color: Colors.grey.shade600,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400,
                           ),
-                          onPressed: () {
-                            _deleteAccount();
-                          },
-                        ),
-                        CupertinoDialogAction(
-                          child: Text("Nein"),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        )
-                      ],
-                    ));
+                          actions: <Widget>[
+                            CupertinoDialogAction(
+                              isDefaultAction: true,
+                              child: CustomText(
+                                text: "Löschen",
+                                color: Colors.red,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                              ),
+                              onPressed: () {
+                                _deleteAccount();
+                              },
+                            ),
+                            CupertinoDialogAction(
+                              child: Text("Nein"),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            )
+                          ],
+                        ));
               },
               child: CustomText(
                 text: 'Konto löschen',
                 color: Colors.red,
               ),
             ),
-
             const SizedBox(
               height: 10,
             ),
