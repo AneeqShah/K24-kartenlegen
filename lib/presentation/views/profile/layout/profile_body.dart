@@ -36,15 +36,19 @@ class _ProfileBodyState extends State<ProfileBody> {
 
   String _appStoreId = '6444417445';
   String _microsoftStoreId = 'com.soloDev.karteblengenUser';
+
   void _setMicrosoftStoreId(String id) => _microsoftStoreId = id;
 
   void _setAppStoreId(String id) => _appStoreId = id;
 
   Future<void> _requestReview() => _inAppReview.requestReview();
-  Future<void> _openStoreListing() => _inAppReview.openStoreListing(
-    appStoreId: _appStoreId,
-    microsoftStoreId: _microsoftStoreId,
-  );
+
+  Future<void> _openStoreListing() =>
+      _inAppReview.openStoreListing(
+        appStoreId: _appStoreId,
+        microsoftStoreId: _microsoftStoreId,
+      );
+
   @override
   void initState() {
     _getUserID();
@@ -162,8 +166,10 @@ class _ProfileBodyState extends State<ProfileBody> {
               height: 10,
             ),
             InkWell(
-              onTap: () {
+              onTap: ()async {
                 NavigationHelper.pushRoute(context, FaqScreen());
+                // _sendMail();
+                // Mailer();
               },
               child: CustomText(
                 text: 'FAQ',
@@ -237,11 +243,12 @@ class _ProfileBodyState extends State<ProfileBody> {
               onTap: () {
                 showDialog(
                     context: context,
-                    builder: (BuildContext context) => CupertinoAlertDialog(
+                    builder: (BuildContext context) =>
+                        CupertinoAlertDialog(
                           title: Text("Konto löschen"),
                           content: CustomText(
                             text:
-                                "Möchten Sie Ihr Konto wirklich löschen? Sie werden alle Ihre Daten dauerhaft verlieren.",
+                            "Möchten Sie Ihr Konto wirklich löschen? Sie werden alle Ihre Daten dauerhaft verlieren.",
                             // color: Colors.grey.shade600,
                             fontSize: 13,
                             fontWeight: FontWeight.w400,
@@ -326,4 +333,8 @@ class _ProfileBodyState extends State<ProfileBody> {
       });
     }
   }
+
+
 }
+
+

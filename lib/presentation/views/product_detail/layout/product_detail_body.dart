@@ -148,6 +148,7 @@ class _ProductDetailBodyState extends State<ProductDetailBody> {
   }
 
   _confirmOrder() async {
+    print("Called");
     try {
       loadingTrue();
       String orderID = FirebaseFirestore.instance
